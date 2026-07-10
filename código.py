@@ -1,35 +1,3 @@
-# Antes de ejecutar un script de Python en Streamlit debes definir la carpeta donde se encuentra tus archivos
-# cd ruta_de_tu_carpeta o abrimos el folder desde visual Studio Code 
-
-# Primero creamos un entorno virtual para instalar Streamlit y otras librerías que necesitemos.
-# python -m venv .venv
-# Esto nos permite crear un entorno virtual donde instalaremos Streamlit 
-# y observaremos la página web que se está generando en este script.
-
-# Opcional: Activaremos el entorno virtual.
-# En Windows:
-# .venv\Scripts\activate
-# deactivate
-# En MacOS/Linux:
-# source .venv/bin/activate
-
-# Acontinuación instalamos Streamlit 
-# pip install Streamlit
-# pip install streamlit_option_menu
-# pip install streamlit.components.v1
-
-# Este código sirve para acceder una página web en tu navegador que te brinda información sobre Streamlit.
-# Pero se ejecuta en la terminal Python de tu ordenador.
-# python -m streamlit hello
-
-# Este comando sirve para ejecutar un script de Python en Streamlit.
-# Pero se ejecuta en la terminal de tu ordenador.
-# OJO: Debes antes tener instalado Streamlit en tu ordenador, 
-## también debes antes definir la ruta de tus archivos y 
-## tener un script de Python (nombre_de_tu_script.py) que quieras ejecutar en Streamlit.
-# python -m streamlit run PC3.py
-# python -m streamlit run nombre_de_tu_script.py
-
 # Librería principal para desarrollar aplicaciones web con Streamlit.
 import streamlit as st
 # Herramienta para crear menús de navegación personalizados en Streamlit.
@@ -39,6 +7,37 @@ from streamlit_option_menu import option_menu
 import streamlit.components.v1 as components
 
 import pandas as pd
+import base64
+
+# Abrimos la imagen que utilizaremos como fondo de la portada.
+with open("fondo_stranger.jpg", "rb") as archivo_imagen:
+    # Convertimos la imagen a texto para que pueda mostrarse dentro del CSS.
+    imagen_codificada = base64.b64encode(
+        archivo_imagen.read()
+    ).decode()
+
+# Aplicamos la imagen como fondo general de la página.
+st.markdown(
+    f"""
+    <style>
+
+    .stApp {{
+        background-image:
+            linear-gradient(
+                rgba(5, 1, 8, 0.35),
+                rgba(5, 1, 8, 0.78)
+            ),
+            url("data:image/jpg;base64,{imagen_codificada}");
+
+        background-size: cover;
+        background-position: center top;
+        background-attachment: fixed;
+    }}
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 st.markdown(
     """
     </style>
