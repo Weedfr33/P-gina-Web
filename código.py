@@ -46,6 +46,29 @@ st.markdown(
 unsafe_allow_html=True
 )
 
+# Aplicamos un fondo oscuro con tonos rojos para darle a la página
+# una estética inspirada en Stranger Things.
+st.markdown(
+    """
+    <style>
+
+    /* Modificamos el fondo general de la aplicación. */
+    .stApp {
+        background: radial-gradient(
+            circle at 50% 15%,
+            rgba(150, 0, 25, 0.22) 0%,
+            rgba(31, 7, 24, 0.95) 38%,
+            #09080d 78%
+        );
+
+        /* Hacemos que el fondo permanezca fijo mientras bajamos por la página. */
+        background-attachment: fixed;
+    }
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 # Cargamos la hoja "Tabla" del archivo Excel.
 # header=1 indica que los nombres de las columnas se encuentran en la segunda fila.
 datos = pd.read_excel(
