@@ -69,7 +69,7 @@ selected = option_menu(
     menu_title=None,
     options=['🧇 Hawkins', '🎧 Now Playing', '📼 The Episodes', '🔦 Upside Down', '🧪 Hawkins Lab' ], 
     icons=['none', 'none', 'none', 'none','none'], 
-    menu_icon=None, default_index=0, orientation="horizontal")
+    menu_icon=None, default_index=1, orientation="horizontal")
     # Título que aparece antes de las selected del menú -> menu_title="Selecciona una sección: "
     # Lista de selected que estarán disponibles en el menú -> ['Inicio', 'Experiencia', 'Gráficos']
     # Iconos asociados a cada opción del menú -> ['person-heart', 'globe-americas', 'pencil-square']
