@@ -93,39 +93,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-selected = option_menu(
-    menu_title=None,
-    options=[
-        "🧇 Hawkins",
-        "🎧 Now Playing",
-        "📼 The Episodes",
-        "🔦 Upside Down",
-        "🧪 Hawkins Lab"
-    ],
-    default_index=0,
-    orientation="horizontal",
-    styles={
-        "container": {
-            "padding": "7px",
-            "background-color": "rgba(8, 7, 15, 0.78)",
-            "border": "1px solid rgba(237, 28, 46, 0.22)",
-            "border-radius": "8px",
-            "backdrop-filter": "blur(8px)"
-        },
-        "nav-link": {
-            "font-size": "17px",
-            "color": "#F5F1F3",
-            "padding": "14px 8px",
-            "border-radius": "6px"
-        },
-        "nav-link-selected": {
-            "background-color": "rgba(210, 20, 43, 0.92)",
-            "color": "#FFFFFF",
-            "font-weight": "700",
-            "box-shadow": "0 0 14px rgba(237, 28, 46, 0.45)"
-        }
-    }
-)
 # Cargamos la hoja "Tabla" del archivo Excel.
 # header=1 indica que los nombres de las columnas se encuentran en la segunda fila.
 datos = pd.read_excel(
@@ -150,19 +117,68 @@ datos = datos.dropna(axis=1, how="all")
 
 # Menú horizontal en una barra horizontal
 # OJO: Se puede eliminar el título del menú con None
-# Crea un menú de navegación horizontal y guarda la opción seleccionada por el usuario en la variable 'selected'
+# Creamos un menú de navegación horizontal para que el usuario pueda
+# desplazarse fácilmente entre las diferentes secciones de la página.
 selected = option_menu(
-    menu_title= None,
-    options=['🧇 Hawkins', '🎧 Now Playing', '📼 The Episodes', '🔦 Upside Down', '🧪 Hawkins Lab' ], 
-    icons=['none', 'none', 'none', 'none','none'], 
-    menu_icon=None, default_index=0, orientation="horizontal")
-    # Título que aparece antes de las selected del menú -> menu_title="Selecciona una sección: "
-    # Lista de selected que estarán disponibles en el menú -> ['Inicio', 'Experiencia', 'Gráficos']
-    # Iconos asociados a cada opción del menú -> ['person-heart', 'globe-americas', 'pencil-square']
-    # Icono principal que aparece junto al título del menú -> menu_icon="cast"
-    # Opción seleccionada por defecto (0 = Inicio) -> default_index=0
-    # Hace que el menú se muestre horizontalmente en lugar de verticalmente -> orientation="horizontal"
 
+    # No mostramos un título dentro del menú porque ya tenemos
+    # el nombre principal del proyecto en la parte superior.
+    menu_title=None,
+
+    # Definimos las secciones que estarán disponibles dentro de la página web.
+    # Cada una representa una funcionalidad distinta del proyecto.
+    options=[
+        "🧇 Hawkins", "📼 The Episodes", "🔦 Upside Down", "🧪 Hawkins Lab"
+    ],
+
+    # No utilizamos los iconos propios de la librería porque
+    # cada opción ya incluye un emoji representativo.
+    icons=["none", "none", "none", "none"],
+
+    # Tampoco mostramos un icono principal ya que el menú
+    # no tiene un título asociado.
+    menu_icon=None,
+
+    # Indicamos que la primera sección ("Hawkins") sea la que
+    # aparezca seleccionada cuando el usuario abra la página.
+    default_index=0,
+
+    # Mostramos el menú de forma horizontal para aprovechar
+    # mejor el ancho de la página.
+    orientation="horizontal",
+
+    # Personalizamos el diseño del menú para adaptarlo
+    # a la estética inspirada en Stranger Things.
+    styles={
+
+        # Modificamos el contenedor general donde se encuentra el menú.
+        "container": {
+            "padding": "7px",
+            "background-color": "rgba(8, 7, 15, 0.78)",
+            "border": "1px solid rgba(237, 28, 46, 0.22)",
+            "border-radius": "8px",
+            "backdrop-filter": "blur(8px)"
+        },
+
+        # Personalizamos la apariencia de todas las opciones del menú.
+        "nav-link": {
+            "font-size": "17px",
+            "color": "#F5F1F3",
+            "padding": "14px 8px",
+            "border-radius": "6px",
+            "text-align": "center"
+        },
+
+        # Definimos el estilo que tendrá únicamente la opción
+        # que el usuario tenga seleccionada.
+        "nav-link-selected": {
+            "background-color": "rgba(210, 20, 43, 0.92)",
+            "color": "#FFFFFF",
+            "font-weight": "700",
+            "box-shadow": "0 0 14px rgba(237, 28, 46, 0.45)"
+        }
+    }
+)
 # Verifica si el usuario ha seleccionado la opción "Inicio" en el menú de navegación horizontal.
 # OJO: En caso que elijas el menú de la barra lateral (sidebar) debes cambiar "selected" por "selected"
 if selected == '🧇 Hawkins':
