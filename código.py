@@ -10,7 +10,7 @@ import pandas as pd
 import base64
 
 # Abrimos la imagen que utilizaremos como fondo de la portada.
-with open("fondo_stranger.jpg", "rb") as archivo_imagen:
+with open("fondoinicio.png", "rb") as archivo_imagen:
     # Convertimos la imagen a texto para que pueda mostrarse dentro del CSS.
     imagen_codificada = base64.b64encode(
         archivo_imagen.read()
