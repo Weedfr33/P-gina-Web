@@ -79,8 +79,8 @@ selected = option_menu(
 
 # Verifica si el usuario ha seleccionado la opción "Inicio" en el menú de navegación horizontal.
 # OJO: En caso que elijas el menú de la barra lateral (sidebar) debes cambiar "selected" por "selected"
-if selected == 'Inicio':
-    st.markdown("<h1 style='text-align: center;'>404: Experiencia no encontrada</h1>", unsafe_allow_html=True)
+if selected == '🧇 Hawkins':
+    st.markdown("<h1 style='text-align: center;'>El punto de partida>", unsafe_allow_html=True)
     # Muestra un título principal utilizando HTML -> st.markdown("...", unsafe_allow_html=True)
     # La etiqueta <h1> define un encabezado de nivel 1 -> "<h1 ...>...</h1>"
     # El estilo CSS 'text-align: center' centra el texto -> style='text-align: center;'
@@ -110,8 +110,8 @@ if selected == 'Inicio':
     # f"<div style='text-align: justify; font-size: 15px;'>{texto}</div>"
     # unsafe_allow_html=True permite que Streamlit interprete las etiquetas HTML incluidas en la cadena
 
-elif selected == 'Experiencia':
-    st.markdown("<h1 style='text-align: center;'>Detrás del código 👩🏻‍💻</h1>", unsafe_allow_html=True)
+elif selected == '🎧 Now Playing':
+    st.markdown("<h1 style='text-align: center;'>¿Qué canción buscas?</h1>", unsafe_allow_html=True)
 
     # Agregar un  texto para la respuesta
     texto_2 = """
@@ -150,8 +150,8 @@ elif selected == 'Experiencia':
         "En este video se explican las principales diferencias entre los bucles for y while en Python mediante ejemplos propios, mostrando su funcionamiento, sus características y las situaciones en las que resulta más adecuado utilizar cada uno."
     )
 
-elif selected == 'Gráficos':
-    st.markdown("<h2 style='text-align: center;'>Visualizando variables🧩</h2>", unsafe_allow_html=True)
+elif selected == '📼 The Episodes':
+    st.markdown("<h2 style='text-align: center;'>La música episodio por episodio</h2>", unsafe_allow_html=True)
 
     graficos = ['📊Gráfico de barras', '📊Gráfico circular', '☁️ Nube de palabras 1', '☁️ Nube de palabras 2', '🗺️Mapa 1']
 
