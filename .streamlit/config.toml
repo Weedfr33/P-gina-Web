@@ -1,6 +1,13 @@
 [theme]
 primaryColor="#C61A2B"
-backgroundColor="#0D0D12"
+# backgroundColor="#0D0D12"
+background: linear-gradient(
+180deg,
+#080808 0%,
+#1A0B1F 35%,
+#2B0A15 70%,
+#0D0D12 100%
+);
 secondaryBackgroundColor="#1B1B2F"
 textColor="#F5F5F5"
 font = "sans serif"
