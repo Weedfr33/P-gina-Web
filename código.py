@@ -46,10 +46,20 @@ st.markdown(
 unsafe_allow_html=True
 )
 
-st.set_page_config(
-    page_title="👾 M&M Things 👾",
-    page_icon="📼",
-    layout="wide"
+st.markdown(
+    """
+    <h1 style="
+        text-align: center;
+        color: #D71932;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+        text-shadow: 0 0 10px rgba(215, 25, 50, 0.75);
+    ">
+        👾 M&M Things 👾
+    </h1>
+    """,
+    unsafe_allow_html=True
 )
 # Aplicamos un fondo oscuro con tonos rojos para darle a la página
 # una estética inspirada en Stranger Things.
