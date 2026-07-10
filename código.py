@@ -39,58 +39,33 @@ st.markdown(
 )
 st.markdown(
     """
-    <div style="
-        text-align: center;
-        margin-top: 30px;
-        margin-bottom: 70px;
-    ">
-        <div style="
-            color: #ED1C2E;
-            font-size: clamp(70px, 9vw, 145px);
-            font-weight: 800;
-            letter-spacing: 12px;
-            line-height: 0.95;
-            text-transform: uppercase;
-            text-shadow:
-                0 0 5px #FF3347,
-                0 0 18px rgba(237, 28, 46, 0.95),
-                0 0 45px rgba(120, 0, 20, 0.85);
-        ">
-            M&amp;M
-        </div>
+    <style>
+    .titulo{
+        text-align:center;
+        color:#ED1C2E;
+        font-size:110px;
+        font-weight:900;
+        letter-spacing:12px;
+        text-shadow:
+            0 0 8px #ff2d4d,
+            0 0 25px rgba(237,28,46,.9);
+    }
 
-        <div style="
-            color: #ED1C2E;
-            font-size: clamp(52px, 7vw, 110px);
-            font-weight: 800;
-            letter-spacing: 18px;
-            line-height: 1;
-            text-transform: uppercase;
-            text-shadow:
-                0 0 5px #FF3347,
-                0 0 18px rgba(237, 28, 46, 0.95),
-                0 0 45px rgba(120, 0, 20, 0.85);
-        ">
-            Things
-        </div>
-
-        <div style="
-            width: 65%;
-            height: 3px;
-            margin: 22px auto 0 auto;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                #ED1C2E,
-                transparent
-            );
-            box-shadow: 0 0 14px #ED1C2E;
-        ">
-        </div>
-    </div>
+    .subtitulo{
+        text-align:center;
+        color:#ED1C2E;
+        font-size:80px;
+        font-weight:900;
+        letter-spacing:20px;
+        margin-top:-35px;
+    }
+    </style>
     """,
     unsafe_allow_html=True
 )
+
+st.markdown('<div class="titulo">M&M</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitulo">THINGS</div>', unsafe_allow_html=True)
 
 # Cargamos la hoja "Tabla" del archivo Excel.
 # header=1 indica que los nombres de las columnas se encuentran en la segunda fila.
