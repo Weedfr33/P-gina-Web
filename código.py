@@ -93,6 +93,39 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+selected = option_menu(
+    menu_title=None,
+    options=[
+        "🧇 Hawkins",
+        "🎧 Now Playing",
+        "📼 The Episodes",
+        "🔦 Upside Down",
+        "🧪 Hawkins Lab"
+    ],
+    default_index=0,
+    orientation="horizontal",
+    styles={
+        "container": {
+            "padding": "7px",
+            "background-color": "rgba(8, 7, 15, 0.78)",
+            "border": "1px solid rgba(237, 28, 46, 0.22)",
+            "border-radius": "8px",
+            "backdrop-filter": "blur(8px)"
+        },
+        "nav-link": {
+            "font-size": "17px",
+            "color": "#F5F1F3",
+            "padding": "14px 8px",
+            "border-radius": "6px"
+        },
+        "nav-link-selected": {
+            "background-color": "rgba(210, 20, 43, 0.92)",
+            "color": "#FFFFFF",
+            "font-weight": "700",
+            "box-shadow": "0 0 14px rgba(237, 28, 46, 0.45)"
+        }
+    }
+)
 # Cargamos la hoja "Tabla" del archivo Excel.
 # header=1 indica que los nombres de las columnas se encuentran en la segunda fila.
 datos = pd.read_excel(
