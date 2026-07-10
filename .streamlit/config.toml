@@ -1,0 +1,7 @@
+[theme]
+primaryColor="#99183A"
+backgroundColor="#940C30"
+secondaryBackgroundColor="#F8BFD1"
+textColor="#FFFFFF"
+font = "Pangolin"
+codeFont = "JetBrains Mono:https://fonts.googleapis.com/css2?family=Pangolin&display=swap"
