@@ -64,8 +64,8 @@ st.markdown(
 unsafe_allow_html=True
 )
 
-    /* Importamos dos tipografías desde Google Fonts.
-    Cinzel se utiliza en los títulos y Poppins en los textos. */
+# Importamos dos tipografías desde Google Fonts. 
+# Cinzel se utiliza en los títulos y Poppins en los textos.
     @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap');
 
     /* Modificamos el fondo general de la aplicación. */
