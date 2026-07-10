@@ -55,6 +55,107 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Aplicamos estilos personalizados para que la página tenga una estética
+# oscura, rojiza y ochentera inspirada en Stranger Things.
+st.markdown(
+    """
+    <style>
+
+    /* Importamos dos tipografías desde Google Fonts.
+    Cinzel se utiliza en los títulos y Poppins en los textos. */
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap');
+
+    /* Modificamos el fondo general de la aplicación. */
+    .stApp {
+        background:
+            radial-gradient(
+                circle at 50% 15%,
+                rgba(150, 0, 25, 0.20) 0%,
+                rgba(20, 4, 18, 0.90) 38%,
+                #08070c 78%
+            );
+        background-attachment: fixed;
+    }
+
+    /* Cambiamos la tipografía general de los textos. */
+    html, body, [class*="css"] {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Diseñamos el título principal de la portada. */
+    .titulo-stranger {
+        font-family: 'Cinzel', serif;
+        color: #d71932;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 7px;
+        font-size: 52px;
+        font-weight: 800;
+        margin-top: 55px;
+        margin-bottom: 10px;
+        text-shadow:
+            0 0 4px #ff304f,
+            0 0 12px rgba(215, 25, 50, 0.75),
+            0 0 28px rgba(120, 0, 20, 0.65);
+    }
+
+    /* Agregamos líneas rojas encima y debajo del título. */
+    .titulo-stranger::before,
+    .titulo-stranger::after {
+        content: "";
+        display: block;
+        width: 74%;
+        height: 2px;
+        margin: 10px auto;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            #d71932,
+            transparent
+        );
+        box-shadow: 0 0 10px rgba(215, 25, 50, 0.8);
+    }
+
+    /* Diseñamos el subtítulo de la portada. */
+    .subtitulo-stranger {
+        text-align: center;
+        color: #d8d5dc;
+        font-size: 18px;
+        letter-spacing: 2px;
+        margin-bottom: 45px;
+    }
+
+    /* Creamos una tarjeta oscura para presentar el proyecto. */
+    .tarjeta-inicio {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 30px 38px;
+        background: rgba(15, 14, 24, 0.82);
+        border: 1px solid rgba(215, 25, 50, 0.48);
+        border-radius: 8px;
+        box-shadow:
+            0 0 18px rgba(0, 0, 0, 0.65),
+            inset 0 0 25px rgba(130, 0, 25, 0.08);
+    }
+
+    /* Modificamos el texto ubicado dentro de la tarjeta. */
+    .tarjeta-inicio p {
+        color: #ebe8ed;
+        font-size: 17px;
+        line-height: 1.8;
+        text-align: justify;
+        margin: 0;
+    }
+
+    /* Estilizamos los títulos secundarios. */
+    h1, h2, h3 {
+        font-family: 'Cinzel', serif !important;
+    }
+
+    </style>
+    """,
+    unsafe_allow_html=True
+
 # Cargamos la hoja "Tabla" del archivo Excel.
 # header=1 indica que los nombres de las columnas se encuentran en la segunda fila.
 datos = pd.read_excel(
