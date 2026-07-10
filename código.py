@@ -39,6 +39,21 @@ from streamlit_option_menu import option_menu
 import streamlit.components.v1 as components
 
 import pandas as pd
+st.markdown("""
+<style>
+
+.stApp {
+    background: linear-gradient(
+        180deg,
+        #080808 0%,
+        #1A0B1F 35%,
+        #2B0A15 70%,
+        #0D0D12 100%
+    );
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 # Cargamos la hoja "Tabla" del archivo Excel.
 # header=1 indica que los nombres de las columnas se encuentran en la segunda fila.
