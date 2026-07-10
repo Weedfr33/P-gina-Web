@@ -55,8 +55,8 @@ st.markdown(
     .stApp {{
         background-image:
             linear-gradient(
-                rgba(5, 1, 8, 0.35),
-                rgba(5, 1, 8, 0.78)
+                rgba(5, 1, 8, 0.60),
+                rgba(5, 1, 8, 0.88)
             ),
            url("data:image/png;base64,{imagen_codificada}");
         background-size: cover;
