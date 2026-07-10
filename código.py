@@ -40,49 +40,59 @@ st.markdown(
 )
 st.markdown(
     """
-    </style>
-""",
-unsafe_allow_html=True
-)
-
-st.markdown(
-    """
-    <h1 style="
+    <div style="
         text-align: center;
-        color: #D71932;
-        letter-spacing: 6px;
-        text-transform: uppercase;
-        margin-bottom: 25px;
-        text-shadow: 0 0 10px rgba(215, 25, 50, 0.75);
+        margin-top: 30px;
+        margin-bottom: 70px;
     ">
-        👾 M&M Things 👾
-    </h1>
+        <div style="
+            color: #ED1C2E;
+            font-size: clamp(70px, 9vw, 145px);
+            font-weight: 800;
+            letter-spacing: 12px;
+            line-height: 0.95;
+            text-transform: uppercase;
+            text-shadow:
+                0 0 5px #FF3347,
+                0 0 18px rgba(237, 28, 46, 0.95),
+                0 0 45px rgba(120, 0, 20, 0.85);
+        ">
+            M&amp;M
+        </div>
+
+        <div style="
+            color: #ED1C2E;
+            font-size: clamp(52px, 7vw, 110px);
+            font-weight: 800;
+            letter-spacing: 18px;
+            line-height: 1;
+            text-transform: uppercase;
+            text-shadow:
+                0 0 5px #FF3347,
+                0 0 18px rgba(237, 28, 46, 0.95),
+                0 0 45px rgba(120, 0, 20, 0.85);
+        ">
+            Things
+        </div>
+
+        <div style="
+            width: 65%;
+            height: 3px;
+            margin: 22px auto 0 auto;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #ED1C2E,
+                transparent
+            );
+            box-shadow: 0 0 14px #ED1C2E;
+        ">
+        </div>
+    </div>
     """,
     unsafe_allow_html=True
 )
-# Aplicamos un fondo oscuro con tonos rojos para darle a la página
-# una estética inspirada en Stranger Things.
-st.markdown(
-    """
-    <style>
 
-    /* Modificamos el fondo general de la aplicación. */
-    .stApp {
-        background: radial-gradient(
-            circle at 50% 15%,
-            rgba(150, 0, 25, 0.22) 0%,
-            rgba(31, 7, 24, 0.95) 38%,
-            #09080d 78%
-        );
-
-        /* Hacemos que el fondo permanezca fijo mientras bajamos por la página. */
-        background-attachment: fixed;
-    }
-
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 # Cargamos la hoja "Tabla" del archivo Excel.
 # header=1 indica que los nombres de las columnas se encuentran en la segunda fila.
 datos = pd.read_excel(
