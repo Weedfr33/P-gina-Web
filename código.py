@@ -46,6 +46,11 @@ st.markdown(
 unsafe_allow_html=True
 )
 
+st.set_page_config(
+    page_title="👾 M&M Things 👾",
+    page_icon="📼",
+    layout="wide"
+)
 # Aplicamos un fondo oscuro con tonos rojos para darle a la página
 # una estética inspirada en Stranger Things.
 st.markdown(
@@ -95,7 +100,7 @@ datos = datos.dropna(axis=1, how="all")
 # OJO: Se puede eliminar el título del menú con None
 # Crea un menú de navegación horizontal y guarda la opción seleccionada por el usuario en la variable 'selected'
 selected = option_menu(
-    menu_title="👾 M&M Things 👾",
+    menu_title= None,
     options=['🧇 Hawkins', '🎧 Now Playing', '📼 The Episodes', '🔦 Upside Down', '🧪 Hawkins Lab' ], 
     icons=['none', 'none', 'none', 'none','none'], 
     menu_icon=None, default_index=0, orientation="horizontal")
