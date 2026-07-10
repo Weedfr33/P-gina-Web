@@ -16,27 +16,7 @@ with open("fondoinicio.png", "rb") as archivo_imagen:
         archivo_imagen.read()
     ).decode()
 
-# Aplicamos la imagen como fondo general de la página.
-st.markdown(
-    f"""
-    <style>
 
-    .stApp {{
-        background-image:
-            linear-gradient(
-                rgba(5, 1, 8, 0.35),
-                rgba(5, 1, 8, 0.78)
-            ),
-           url("data:image/png;base64,{imagen_codificada}");
-        background-size: cover;
-        background-position: center top;
-        background-attachment: fixed;
-    }}
-
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 st.markdown(
     """
     <style>
@@ -66,6 +46,28 @@ st.markdown(
 
 st.markdown('<div class="titulo">M&M</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitulo">THINGS</div>', unsafe_allow_html=True)
+
+# Aplicamos la imagen como fondo general de la página.
+st.markdown(
+    f"""
+    <style>
+
+    .stApp {{
+        background-image:
+            linear-gradient(
+                rgba(5, 1, 8, 0.35),
+                rgba(5, 1, 8, 0.78)
+            ),
+           url("data:image/png;base64,{imagen_codificada}");
+        background-size: cover;
+        background-position: center top;
+        background-attachment: fixed;
+    }}
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Cargamos la hoja "Tabla" del archivo Excel.
 # header=1 indica que los nombres de las columnas se encuentran en la segunda fila.
