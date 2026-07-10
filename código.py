@@ -27,8 +27,7 @@ st.markdown(
                 rgba(5, 1, 8, 0.35),
                 rgba(5, 1, 8, 0.78)
             ),
-            url("data:image/jpg;base64,{imagen_codificada}");
-
+           url("data:image/png;base64,{imagen_codificada}");
         background-size: cover;
         background-position: center top;
         background-attachment: fixed;
