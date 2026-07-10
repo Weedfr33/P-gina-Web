@@ -39,24 +39,6 @@ from streamlit_option_menu import option_menu
 import streamlit.components.v1 as components
 
 import pandas as pd
-st.markdown("""
-<style>
-
-.stApp {
-    background: linear-gradient(
-        180deg,
-        #080808 0%,
-        #1A0B1F 35%,
-        #2B0A15 70%,
-        #0D0D12 100%
-    );
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-# Aplicamos estilos personalizados para que la página tenga una estética
-# oscura, rojiza y ochentera inspirada en Stranger Things.
 st.markdown(
     """
     </style>
@@ -66,9 +48,9 @@ unsafe_allow_html=True
 
 # Importamos dos tipografías desde Google Fonts. 
 # Cinzel se utiliza en los títulos y Poppins en los textos.
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap');
+import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap');
 
-    /* Modificamos el fondo general de la aplicación. */
+ # Modificamos el fondo general de la aplicación. 
     .stApp {
         background:
             radial-gradient(
@@ -80,7 +62,7 @@ unsafe_allow_html=True
         background-attachment: fixed;
     }
 
-    /* Cambiamos la tipografía general de los textos. */
+   # Cambiamos la tipografía general de los textos. 
     html, body, [class*="css"] {
         font-family: 'Poppins', sans-serif;
     }
