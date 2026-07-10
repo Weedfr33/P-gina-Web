@@ -95,7 +95,7 @@ datos = datos.dropna(axis=1, how="all")
 # OJO: Se puede eliminar el título del menú con None
 # Crea un menú de navegación horizontal y guarda la opción seleccionada por el usuario en la variable 'selected'
 selected = option_menu(
-    menu_title=None,
+    menu_title=👾M&M Things👾,
     options=['🧇 Hawkins', '🎧 Now Playing', '📼 The Episodes', '🔦 Upside Down', '🧪 Hawkins Lab' ], 
     icons=['none', 'none', 'none', 'none','none'], 
     menu_icon=None, default_index=0, orientation="horizontal")
