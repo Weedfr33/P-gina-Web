@@ -59,7 +59,10 @@ st.markdown("""
 # oscura, rojiza y ochentera inspirada en Stranger Things.
 st.markdown(
     """
-    <style>
+    </style>
+""",
+unsafe_allow_html=True
+)
 
     /* Importamos dos tipografías desde Google Fonts.
     Cinzel se utiliza en los títulos y Poppins en los textos. */
