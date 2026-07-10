@@ -38,6 +38,18 @@ from streamlit_option_menu import option_menu
 # components.html() permite mostrar código HTML interactivo directamente en la interfaz.
 import streamlit.components.v1 as components
 
+import pandas as pd
+
+# Cargamos la hoja "Tabla" del archivo Excel.
+# header=1 indica que los nombres de las columnas se encuentran en la segunda fila.
+datos = pd.read_excel(
+    "BASE DE DATOS - COMPUTACIONAL.xlsx",
+    sheet_name="Tabla",
+    header=1
+)
+
+# Eliminamos la primera columna porque está vacía.
+datos = datos.dropna(axis=1, how="all")
 # Menú vertical en una barra lateral
 # Crea una barra lateral (sidebar) en la aplicación.
 #with st.sidebar:
