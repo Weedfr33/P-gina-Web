@@ -67,7 +67,7 @@ datos = datos.dropna(axis=1, how="all")
 # Crea un menú de navegación horizontal y guarda la opción seleccionada por el usuario en la variable 'selected'
 selected = option_menu(
     menu_title=None,
-    options=['Inicio', 'Experiencia', 'Gráficos'], 
+    options=['🧇 Hawkins', '🎧 Now Playing', '📼 The Episodes', '🔦 Upside Down', '🧪 Hawkins Lab' ], 
     icons=['film', 'film', 'film'], 
     menu_icon=None, default_index=0, orientation="horizontal")
     # Título que aparece antes de las selected del menú -> menu_title="Selecciona una sección: "
@@ -90,7 +90,7 @@ if selected == 'Inicio':
     col1, col2 = st.columns(2)
 
     # Muestra una imagen en la primera columna
-    col1.image("fotoccori.jpg", caption='Ccori', width=300)
+    # col1.image("fotoccori.jpg", caption='Ccori', width=300)
     # "ellie.png" es el archivo de imagen que se visualizará -> Aquí debes reemplazar por tu foto de perfil
     # El texto "Ellie" aparecerá como descripción de la imagen
     # width=300 establece el ancho de la imagen en 300 píxeles
