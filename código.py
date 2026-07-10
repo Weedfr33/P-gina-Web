@@ -151,7 +151,7 @@ elif selected == '🎧 Now Playing':
     )
 
 elif selected == '📼 The Episodes':
-    st.markdown("<h2 style='text-align: center;'>La música episodio por episodio</h2>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>La música episodio por episodio</h2>", unsafe_allow_html=True)
 
     graficos = ['📊Gráfico de barras', '📊Gráfico circular', '☁️ Nube de palabras 1', '☁️ Nube de palabras 2', '🗺️Mapa 1']
 
@@ -270,3 +270,9 @@ elif selected == '📼 The Episodes':
             html_content,
             height=600
         )
+elif selected == '🔦 Upside Down':
+    st.markdown("<h1 style='text-align: center;'>Atrévete a descubrir algo nuevo</h2>", unsafe_allow_html=True)
+
+elif selected == '🧪 Hawkins Lab':
+    st.markdown("<h1 style='text-align: center;'>Analizando el soundtrack</h2>", unsafe_allow_html=True)
+
