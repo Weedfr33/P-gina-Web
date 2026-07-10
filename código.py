@@ -46,20 +46,6 @@ st.markdown(
 unsafe_allow_html=True
 )
 
- # Modificamos el fondo general de la aplicación. 
-    .stApp {
-        background:
-            radial-gradient(
-                circle at 50% 15%,
-                rgba(150, 0, 25, 0.20) 0%,
-                rgba(20, 4, 18, 0.90) 38%,
-                #08070c 78%
-            );
-        background-attachment: fixed;
-    }
-
-  
-
 # Cargamos la hoja "Tabla" del archivo Excel.
 # header=1 indica que los nombres de las columnas se encuentran en la segunda fila.
 datos = pd.read_excel(
