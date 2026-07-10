@@ -68,7 +68,7 @@ datos = datos.dropna(axis=1, how="all")
 selected = option_menu(
     menu_title=None,
     options=['🧇 Hawkins', '🎧 Now Playing', '📼 The Episodes', '🔦 Upside Down', '🧪 Hawkins Lab' ], 
-    icons=['none', 'film', 'film'], 
+    icons=['none', 'none', 'none', 'none','none'], 
     menu_icon=None, default_index=0, orientation="horizontal")
     # Título que aparece antes de las selected del menú -> menu_title="Selecciona una sección: "
     # Lista de selected que estarán disponibles en el menú -> ['Inicio', 'Experiencia', 'Gráficos']
