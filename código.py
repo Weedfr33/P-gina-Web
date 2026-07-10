@@ -182,7 +182,9 @@ selected = option_menu(
 # Verifica si el usuario ha seleccionado la opción "Inicio" en el menú de navegación horizontal.
 # OJO: En caso que elijas el menú de la barra lateral (sidebar) debes cambiar "selected" por "selected"
 if selected == '🧇 Hawkins':
-    st.markdown("<h1 style='text-align: center;'>El punto de partida>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>El punto de partida", 
+    unsafe_allow_html=True
+    )
     # Muestra un título principal utilizando HTML -> st.markdown("...", unsafe_allow_html=True)
     # La etiqueta <h1> define un encabezado de nivel 1 -> "<h1 ...>...</h1>"
     # El estilo CSS 'text-align: center' centra el texto -> style='text-align: center;'
