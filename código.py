@@ -97,7 +97,9 @@ datos["Título"] = datos["Título"].ffill()
 # Después de limpiar los encabezados, esta columna ya no lleva
 # un espacio adicional después del punto.
 datos["Descripción sinóptica del episodio"] = datos["Descripción sinóptica del episodio"].ffill()
-
+# Completamos las portadas vacías utilizando la imagen
+# registrada en la primera fila de cada episodio.
+datos["Portada del capítulo"] = datos["Portada del capítulo"].ffill()
 # Eliminamos la primera columna porque está vacía.
 datos = datos.dropna(axis=1, how="all")
 # Menú vertical en una barra lateral
@@ -639,16 +641,18 @@ elif selected == "🧪 Hawkins Lab":
             # Agregamos espacio entre una canción y otra.
             st.write("")
 
+# Verificamos si el usuario seleccionó la sección "The Episodes"
+# dentro del menú principal de la página.
 elif selected == "📼 The Episodes":
 
-    # Mostramos el título principal.
+    # Mostramos el título principal de esta sección.
     st.markdown(
         """
         <h1 style="
-            text-align:center;
-            font-size:55px;
-            margin-top:35px;
-            margin-bottom:25px;
+            text-align: center;
+            font-size: 55px;
+            margin-top: 35px;
+            margin-bottom: 25px;
         ">
             La historia episodio por episodio
         </h1>
@@ -656,72 +660,159 @@ elif selected == "📼 The Episodes":
         unsafe_allow_html=True
     )
 
-    # Creamos la lista de temporadas.
+    # Creamos una lista con las tres temporadas disponibles.
     opciones_temporada = [
         "Temporada 1",
         "Temporada 2",
         "Temporada 3"
     ]
 
-    # Mostramos la barra desplegable.
+    # Mostramos una barra desplegable para que el usuario
+    # seleccione la temporada cuyos episodios desea revisar.
     temporada_seleccionada = st.selectbox(
         "Selecciona una temporada",
-        opciones_temporada
+        opciones_temporada,
+        key="temporada_episodios"
     )
-    temporadas_excel = {
-    "Temporada 1": "Primera",
-    "Temporada 2": "Segunda",
-    "Temporada 3": "Tercera"
-}
 
+    # Relacionamos el nombre mostrado en la página con
+    # el nombre que aparece dentro del archivo Excel.
+    temporadas_excel = {
+        "Temporada 1": "Primera",
+        "Temporada 2": "Segunda",
+        "Temporada 3": "Tercera"
+    }
+
+    # Obtenemos el nombre de la temporada tal como
+    # se encuentra registrado en la base de datos.
     nombre_temporada = temporadas_excel[temporada_seleccionada]
-    
+
+    # Filtramos la base de datos para conservar únicamente
+    # los registros de la temporada seleccionada.
     datos_temporada = datos[
         datos["Temporada"] == nombre_temporada
     ]
+
+    # Obtenemos los episodios disponibles dentro de la temporada
+    # y los ordenamos para mostrarlos en su orden correspondiente.
     episodios = sorted(
         datos_temporada["Episodio"]
         .dropna()
         .unique()
+        .tolist()
     )
+
+    # Recorremos cada episodio de la temporada seleccionada.
     for episodio in episodios:
-    
+
+        # Filtramos las filas pertenecientes al episodio actual.
         datos_episodio = datos_temporada[
             datos_temporada["Episodio"] == episodio
         ]
-    
+
+        # Recuperamos el título, la descripción y la portada
+        # registrados para el episodio.
         titulo = datos_episodio["Título"].iloc[0]
-    
-        descripcion = datos_episodio["Descripción sinóptica del episodio"].iloc[0]
-    
-        st.container(border=True)
-    
-        st.markdown(
-            f"""
-            <h2 style="
-                color:#FF203D;
-                margin-bottom:5px;
-            ">
-                Episodio {int(episodio)}
-            </h2>
-            """,
-            unsafe_allow_html=True
-        )
-    
-        st.markdown(
-            f"""
-            <h3 style="
-                color:white;
-                margin-top:0;
-            ">
-                {titulo}
-            </h3>
-            """,
-            unsafe_allow_html=True
-        )
-    
-        st.write(descripcion)
-    
+        descripcion = datos_episodio[
+            "Descripción sinóptica del episodio"
+        ].iloc[0]
+        portada_episodio = datos_episodio[
+            "Portada del capítulo"
+        ].iloc[0]
+
+        # Agregamos un espacio antes de cada episodio para que
+        # los bloques no aparezcan demasiado juntos.
+        st.write("")
+        st.write("")
+
+        # Alternamos la ubicación de la imagen:
+        # los episodios impares la muestran a la izquierda
+        # y los episodios pares la muestran a la derecha.
+        if int(episodio) % 2 != 0:
+            columna_imagen, columna_texto = st.columns(
+                [1.3, 2],
+                gap="large"
+            )
+        else:
+            columna_texto, columna_imagen = st.columns(
+                [2, 1.3],
+                gap="large"
+            )
+
+        # Mostramos la portada del episodio en la columna
+        # que le corresponde según el orden alternado.
+        with columna_imagen:
+
+            # Verificamos que exista una dirección de imagen
+            # antes de intentar mostrarla.
+            if pd.notna(portada_episodio):
+
+                st.image(
+                    portada_episodio,
+                    use_container_width=True
+                )
+
+            else:
+
+                # Si no existe una portada, mostramos un aviso
+                # para que la aplicación continúe funcionando.
+                with st.container(border=True):
+                    st.markdown(
+                        """
+                        ### 📺 Sin imagen
+
+                        No se encontró una portada para este episodio.
+                        """
+                    )
+
+        # Mostramos el número, el título y la sinopsis
+        # del episodio en la columna de texto.
+        with columna_texto:
+
+            st.markdown(
+                f"""
+                <h2 style="
+                    color: #FF203D;
+                    font-size: 34px;
+                    margin-top: 10px;
+                    margin-bottom: 8px;
+                ">
+                    Episodio {int(episodio)}
+                </h2>
+                """,
+                unsafe_allow_html=True
+            )
+
+            st.markdown(
+                f"""
+                <h3 style="
+                    color: #FFFFFF;
+                    font-size: 28px;
+                    margin-top: 0;
+                    margin-bottom: 20px;
+                ">
+                    {titulo}
+                </h3>
+                """,
+                unsafe_allow_html=True
+            )
+
+            st.markdown(
+                f"""
+                <p style="
+                    color: #F2F2F2;
+                    font-size: 18px;
+                    line-height: 1.8;
+                    text-align: justify;
+                ">
+                    {descripcion}
+                </p>
+                """,
+                unsafe_allow_html=True
+            )
+
+        # Agregamos una línea para separar visualmente
+        # un episodio del siguiente.
         st.divider()
 elif selected == '🔦 Upside Down':
     st.markdown("<h1 style='text-align: center;'>Atrévete a descubrir algo nuevo</h2>", unsafe_allow_html=True)
