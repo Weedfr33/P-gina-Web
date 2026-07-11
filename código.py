@@ -674,55 +674,55 @@ elif selected == "📼 The Episodes":
     "Temporada 3": "Tercera"
 }
 
-nombre_temporada = temporadas_excel[temporada_seleccionada]
-
-datos_temporada = datos[
-    datos["Temporada"] == nombre_temporada
-]
-episodios = sorted(
-    datos_temporada["Episodio"]
-    .dropna()
-    .unique()
-)
-for episodio in episodios:
-
-    datos_episodio = datos_temporada[
-        datos_temporada["Episodio"] == episodio
+    nombre_temporada = temporadas_excel[temporada_seleccionada]
+    
+    datos_temporada = datos[
+        datos["Temporada"] == nombre_temporada
     ]
-
-    titulo = datos_episodio["Título"].iloc[0]
-
-    descripcion = datos_episodio["Descripción del ep."].iloc[0]
-
-    st.container(border=True)
-
-    st.markdown(
-        f"""
-        <h2 style="
-            color:#FF203D;
-            margin-bottom:5px;
-        ">
-            Episodio {int(episodio)}
-        </h2>
-        """,
-        unsafe_allow_html=True
+    episodios = sorted(
+        datos_temporada["Episodio"]
+        .dropna()
+        .unique()
     )
-
-    st.markdown(
-        f"""
-        <h3 style="
-            color:white;
-            margin-top:0;
-        ">
-            {titulo}
-        </h3>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.write(descripcion)
-
-    st.divider()
+    for episodio in episodios:
+    
+        datos_episodio = datos_temporada[
+            datos_temporada["Episodio"] == episodio
+        ]
+    
+        titulo = datos_episodio["Título"].iloc[0]
+    
+        descripcion = datos_episodio["Descripción del ep."].iloc[0]
+    
+        st.container(border=True)
+    
+        st.markdown(
+            f"""
+            <h2 style="
+                color:#FF203D;
+                margin-bottom:5px;
+            ">
+                Episodio {int(episodio)}
+            </h2>
+            """,
+            unsafe_allow_html=True
+        )
+    
+        st.markdown(
+            f"""
+            <h3 style="
+                color:white;
+                margin-top:0;
+            ">
+                {titulo}
+            </h3>
+            """,
+            unsafe_allow_html=True
+        )
+    
+        st.write(descripcion)
+    
+        st.divider()
 elif selected == '🔦 Upside Down':
     st.markdown("<h1 style='text-align: center;'>Atrévete a descubrir algo nuevo</h2>", unsafe_allow_html=True)
 
