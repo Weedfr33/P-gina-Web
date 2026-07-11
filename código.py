@@ -692,7 +692,7 @@ elif selected == "📼 The Episodes":
     
         titulo = datos_episodio["Título"].iloc[0]
     
-        descripcion = datos_episodio["Descripción del ep."].iloc[0]
+        descripcion = datos_episodio["Descripción sinóptica del episodio"].iloc[0]
     
         st.container(border=True)
     
