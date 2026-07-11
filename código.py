@@ -84,7 +84,7 @@ datos = pd.read_excel(
 # Esto es necesario porque el título y la descripción solo aparecen
 # una vez al inicio de cada episodio dentro del archivo Excel.
 datos["Título"] = datos["Título"].ffill()
-datos["Descripción del ep. "] = datos["Descripción del ep. "].ffill()
+datos["Descripción sinóptica del episodio "] = datos["Descripción sinóptica del episodio "].ffill()
 
 # Eliminamos la primera columna porque está vacía.
 datos = datos.dropna(axis=1, how="all")
