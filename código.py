@@ -453,7 +453,7 @@ if selected == "🧇 Hawkins":
             st.markdown(
                 """
                 Explora el repositorio de canciones organizado por
-                temporada y episodio, junto con gráficos y mapas.
+                temporada y episodio, junto con sus portadas.
                 """
             )
 
