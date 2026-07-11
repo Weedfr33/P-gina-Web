@@ -616,9 +616,9 @@ elif selected == "🧪 Hawkins Lab":
             # Creamos dos columnas para colocar la portada
             # al lado de la información de la canción.
             columna_portada, columna_texto = st.columns(
-                [1, 4],
+                [1.3,3.7],
                 gap="large"
-            )
+                )
 
             with columna_portada:
 
