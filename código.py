@@ -156,38 +156,91 @@ selected = option_menu(
     }
 )
     
-# Verifica si el usuario ha seleccionado la opción "Inicio" en el menú de navegación horizontal.
-# OJO: En caso que elijas el menú de la barra lateral (sidebar) debes cambiar "selected" por "selected"
-if selected == '🧇 Hawkins':
-    st.markdown("<h1 style='text-align: center;'>404: Experiencia no encontrada</h1>", unsafe_allow_html=True)
-    # Muestra un título principal utilizando HTML -> st.markdown("...", unsafe_allow_html=True)
-    # La etiqueta <h1> define un encabezado de nivel 1 -> "<h1 ...>...</h1>"
-    # El estilo CSS 'text-align: center' centra el texto -> style='text-align: center;'
-    # unsafe_allow_html=True permite que Streamlit interprete y renderice el código HTML incluido en la cadena
+# Verificamos si el usuario seleccionó la sección "Hawkins"
+# dentro del menú de navegación.
+if selected == "🧇 Hawkins":
 
-    # Crea dos columnas de igual tamaño para organizar el contenido de forma horizontal en la aplicación.
-    col1, col2 = st.columns(2)
+    # Mostramos el título principal de la sección.
+    st.markdown(
+        "<h1 style='text-align: center;'>Bienvenido a Hawkins</h1>",
+        unsafe_allow_html=True
+    )
 
-    # Muestra una imagen en la primera columna
-    col1.image("fotoccori.jpg", caption='Ccori', width=300)
-    # "ellie.png" es el archivo de imagen que se visualizará -> Aquí debes reemplazar por tu foto de perfil
-    # El texto "Ellie" aparecerá como descripción de la imagen
-    # width=300 establece el ancho de la imagen en 300 píxeles
+    # -------------------------
+    # Banner principal
+    # -------------------------
 
-    # Define una cadena de texto multilínea que contiene una guía para redactar una presentación personal.
-    texto = """
-    Hola! Soy Ccori Arias, 
-    estudiante de comunicación audiovisual en la PUCP. 
-    Lo que más me gusta de mi carrera es que nunca se queda solo en la teoría. Es una carrera muy práctica, donde cada proyecto es una oportunidad para aprender. También disfruto mucho que combine el lado artístico con el pensamiento lógico, porque te reta a crear, analizar y resolver problemas al mismo tiempo.
-    En el futuro, me gustaría ser productora ejecutiva y de campo, me encanta crear proyectos audiovisuales y vivir todo el proceso de hacer que una idea cobre vida. 
-    Cuando tengo tiempo libre disfruto mucho ver películas, tomar fotos, grabar videos de mis experiencias cotidianas y luego editar el material.
-    """
+    # Aquí colocaremos la imagen principal de la portada.
+    # st.image("banner_hawkins.png", use_container_width=True)
 
-    # Muestra el texto en la segunda columna utilizando HTML
-    col2.markdown(f"<div style='text-align: justify; font-size: 18px;'>{texto}</div>", unsafe_allow_html=True)
-    # El estilo CSS justifica el texto y establece un tamaño de fuente de 18 píxeles
-    # f"<div style='text-align: justify; font-size: 15px;'>{texto}</div>"
-    # unsafe_allow_html=True permite que Streamlit interprete las etiquetas HTML incluidas en la cadena
+    # Aquí irá una frase introductoria del proyecto.
+    # st.markdown("...")
+
+    st.divider()
+
+    # -------------------------
+    # ¿Qué es M&M Things?
+    # -------------------------
+
+    st.subheader("📖 ¿Qué es M&M Things?")
+
+    # Aquí irá la descripción general del proyecto.
+    # st.write("...")
+
+    st.divider()
+
+    # -------------------------
+    # Objetivo del proyecto
+    # -------------------------
+
+    st.subheader("🎯 Objetivo")
+
+    # Aquí explicaremos cuál es el propósito de la página.
+    # st.write("...")
+
+    st.divider()
+
+    # -------------------------
+    # ¿Qué encontrarás aquí?
+    # -------------------------
+
+    st.subheader("🧭 ¿Qué encontrarás en esta página?")
+
+    # Aquí describiremos brevemente cada sección de la página.
+    # 📺 The Episodes
+    # 🧪 Hawkins Lab
+    # 🔦 Upside Down
+
+    st.divider()
+
+    # -------------------------
+    # ¿Por qué Stranger Things?
+    # -------------------------
+
+    st.subheader("🌌 ¿Por qué Stranger Things?")
+
+    # Aquí explicaremos por qué elegimos la serie
+    # como inspiración para el proyecto.
+
+    st.divider()
+
+    # -------------------------
+    # ¿Cómo utilizar la página?
+    # -------------------------
+
+    st.subheader("🖱️ ¿Cómo navegar por la página?")
+
+    # Aquí explicaremos cómo recorrer las diferentes
+    # secciones de la aplicación.
+
+    st.divider()
+
+    # -------------------------
+    # Comienza la exploración
+    # -------------------------
+
+    # Aquí colocaremos un mensaje final que invite al usuario
+    # a explorar el resto de la página.
 
 elif selected == '🎧 Now Playing':
     st.markdown("<h1 style='text-align: center;'>¿Qué canción buscas?</h1>", unsafe_allow_html=True)
