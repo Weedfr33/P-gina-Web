@@ -829,7 +829,7 @@ elif selected == "📼 The Episodes":
 # dentro del menú principal de la página.
 elif selected == "🔦 Upside Down":
 
-    # Mostramos el título principal de la sección.
+    # Mostramos el título principal de esta sección.
     st.markdown(
         """
         <h1 style="
@@ -860,8 +860,8 @@ elif selected == "🔦 Upside Down":
         unsafe_allow_html=True
     )
 
-    # Creamos tres columnas para colocar el botón en el centro
-    # y evitar que ocupe todo el ancho de la página.
+    # Creamos tres columnas para colocar el botón
+    # en la parte central de la página.
     espacio_izquierdo, columna_boton, espacio_derecho = st.columns(
         [1.5, 2, 1.5]
     )
@@ -875,61 +875,58 @@ elif selected == "🔦 Upside Down":
             use_container_width=True
         )
 
-    # Seleccionamos una canción aleatoria únicamente cuando
-    # el usuario presiona el botón "Abrir el portal".
+    # Seleccionamos una canción únicamente cuando
+    # el usuario presiona el botón.
     if recomendar:
 
         # Eliminamos temporalmente las filas que no tengan
-        # nombre de canción o artista para evitar recomendaciones vacías.
+        # nombre de canción o artista.
         canciones_disponibles = datos.dropna(
             subset=["Canción", "Artista"]
         )
 
-        # Seleccionamos una canción solamente cuando
-        # el usuario presiona el botón.
-        if recomendar:
-        
-            canciones_disponibles = datos.dropna(
-                subset=["Canción", "Artista"]
-            )
-        
-            # Guardamos la canción elegida aleatoriamente.
-            st.session_state["cancion_recomendada"] = (
-                canciones_disponibles.sample(1).iloc[0]
-            )
-        
-            # Indicamos que la recomendación ya puede mostrarse.
-            st.session_state["mostrar_recomendacion"] = True
-            # Verificamos si el usuario ya presionó el botón
-            # y existe una canción recomendada para mostrar.
-            if "cancion_recomendada" in st.session_state:
+        # Elegimos una canción al azar y la guardamos
+        # para poder mostrarla en la página.
+        st.session_state["cancion_recomendada"] = (
+            canciones_disponibles.sample(1).iloc[0]
+        )
 
-    # Recuperamos la canción que fue seleccionada aleatoriamente.
-    cancion = st.session_state["cancion_recomendada"]
+        # Indicamos que la recomendación ya puede mostrarse.
+        st.session_state["mostrar_recomendacion"] = True
 
-    # Guardamos por separado los datos que utilizaremos
-    # para construir la recomendación.
-    nombre_cancion = cancion["Canción"]
-    artista = cancion["Artista"]
-    año = cancion["Año"]
-    temporada = cancion["Temporada"]
-    episodio = cancion["Episodio"]
-    titulo_episodio = cancion["Título"]
-    portada = cancion["Portada (imagen)"]
+    # Mostramos la recomendación únicamente después
+    # de que el usuario haya presionado el botón.
+    if (
+        st.session_state.get("mostrar_recomendacion", False)
+        and "cancion_recomendada" in st.session_state
+    ):
 
-    # Relacionamos el nombre registrado en el Excel
-    # con una forma más clara de mostrar la temporada.
-    nombres_temporada = {
-        "Primera": "Temporada 1",
-        "Segunda": "Temporada 2",
-        "Tercera": "Temporada 3"
-    }
+        # Recuperamos la canción seleccionada aleatoriamente.
+        cancion = st.session_state["cancion_recomendada"]
 
-    # Obtenemos el nombre que aparecerá en la página.
-    temporada_mostrada = nombres_temporada.get(
-        temporada,
-        temporada
-    )
+        # Guardamos por separado los datos que utilizaremos
+        # para construir la recomendación.
+        nombre_cancion = cancion["Canción"]
+        artista = cancion["Artista"]
+        año = cancion["Año"]
+        temporada = cancion["Temporada"]
+        episodio = cancion["Episodio"]
+        titulo_episodio = cancion["Título"]
+        portada = cancion["Portada (imagen)"]
+
+        # Relacionamos el nombre registrado en el Excel
+        # con una forma más clara de mostrar la temporada.
+        nombres_temporada = {
+            "Primera": "Temporada 1",
+            "Segunda": "Temporada 2",
+            "Tercera": "Temporada 3"
+        }
+
+        # Obtenemos el nombre que aparecerá en la página.
+        temporada_mostrada = nombres_temporada.get(
+            temporada,
+            temporada
+        )
 
         # Convertimos el año en un número entero cuando exista.
         if pd.notna(año):
@@ -947,8 +944,8 @@ elif selected == "🔦 Upside Down":
         st.write("")
         st.write("")
 
-        # Creamos tres columnas para colocar la portada en el centro
-        # y darle mayor protagonismo que en Hawkins Lab.
+        # Creamos tres columnas para colocar la portada
+        # en el centro y darle mayor protagonismo.
         espacio_portada_1, columna_portada, espacio_portada_2 = st.columns(
             [1.4, 2.2, 1.4]
         )
@@ -967,8 +964,8 @@ elif selected == "🔦 Upside Down":
 
             else:
 
-                # Si la canción no tiene portada, mostramos
-                # un mensaje sin detener la aplicación.
+                # Si no existe una portada, mostramos un mensaje
+                # sin detener el funcionamiento de la página.
                 with st.container(border=True):
                     st.markdown("### 💿 Portada no disponible")
 
@@ -1005,8 +1002,8 @@ elif selected == "🔦 Upside Down":
             unsafe_allow_html=True
         )
 
-        # Creamos tres columnas para organizar los datos
-        # principales de la recomendación.
+        # Creamos tres columnas para organizar el año,
+        # la temporada y el episodio.
         tarjeta_año, tarjeta_temporada, tarjeta_episodio = st.columns(
             3,
             gap="large"
@@ -1016,6 +1013,7 @@ elif selected == "🔦 Upside Down":
         with tarjeta_año:
 
             with st.container(border=True):
+
                 st.markdown(
                     "<h3 style='text-align: center;'>Año</h3>",
                     unsafe_allow_html=True
@@ -1030,6 +1028,7 @@ elif selected == "🔦 Upside Down":
         with tarjeta_temporada:
 
             with st.container(border=True):
+
                 st.markdown(
                     "<h3 style='text-align: center;'>Temporada</h3>",
                     unsafe_allow_html=True
@@ -1044,6 +1043,7 @@ elif selected == "🔦 Upside Down":
         with tarjeta_episodio:
 
             with st.container(border=True):
+
                 st.markdown(
                     "<h3 style='text-align: center;'>Episodio</h3>",
                     unsafe_allow_html=True
@@ -1054,12 +1054,13 @@ elif selected == "🔦 Upside Down":
                     unsafe_allow_html=True
                 )
 
-        # Agregamos espacio antes de mostrar el contexto
-        # en el que aparece la canción.
+        # Agregamos espacio antes de mostrar el título
+        # del episodio en el que aparece la canción.
         st.write("")
         st.write("")
 
-        # Mostramos el título del episodio dentro de una tarjeta.
+        # Mostramos el contexto de la canción
+        # dentro de una tarjeta final.
         with st.container(border=True):
 
             st.markdown(
