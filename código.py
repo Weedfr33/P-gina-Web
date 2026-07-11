@@ -1017,108 +1017,131 @@ elif selected == "🔦 Upside Down":
             unsafe_allow_html=True
         )
 
-        # Creamos tres columnas para organizar el año,
-        # la temporada y el episodio.
-        tarjeta_año, tarjeta_temporada, tarjeta_episodio = st.columns(
-            3,
-            gap="large"
-        )
+# Creamos tres columnas para organizar el año,
+# la temporada y el episodio de la canción recomendada.
+tarjeta_año, tarjeta_temporada, tarjeta_episodio = st.columns(
+    3,
+    gap="large"
+)
 
-        # Mostramos el año dentro de una tarjeta.
-        with tarjeta_año:
+# Mostramos el año dentro de una tarjeta con un tono oscuro rojizo.
+with tarjeta_año:
 
-            with st.container(border=True):
+    st.markdown(
+        f"""
+        <div style="
+            min-height: 245px;
+            padding: 28px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 12px;
+            background: rgba(44, 7, 15, 0.46);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        ">
 
-                st.markdown(
-                    """
-                    <h3 style="
-                        text-align: center;
-                        margin-bottom: 8px;
-                    ">
-                        Año
-                    </h3>
-                    """,
-                    unsafe_allow_html=True
-                )
+            <h3 style="
+                color: #FFFFFF;
+                font-size: 28px;
+                margin: 0 0 45px 0;
+            ">
+                Año
+            </h3>
 
-                st.markdown(
-                    f"""
-                    <h2 style="
-                        text-align: center;
-                        font-size: 34px;
-                        margin-top: 0;
-                        margin-bottom: 5px;
-                    ">
-                        {año_mostrado}
-                    </h2>
-                    """,
-                    unsafe_allow_html=True
-                )
+            <h2 style="
+                color: #FFFFFF;
+                font-size: 42px;
+                margin: 0;
+            ">
+                {año_mostrado}
+            </h2>
 
-        # Mostramos el número de la temporada dentro
-        # de una segunda tarjeta.
-        with tarjeta_temporada:
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-            with st.container(border=True):
+# Mostramos la temporada dentro de una tarjeta
+# con un tono ligeramente más rojizo para diferenciarla.
+with tarjeta_temporada:
 
-                st.markdown(
-                    """
-                    <h3 style="
-                        text-align: center;
-                        margin-bottom: 8px;
-                    ">
-                        Temporada
-                    </h3>
-                    """,
-                    unsafe_allow_html=True
-                )
+    st.markdown(
+        f"""
+        <div style="
+            min-height: 245px;
+            padding: 28px 20px;
+            border: 1px solid rgba(255, 32, 61, 0.38);
+            border-radius: 12px;
+            background: rgba(92, 8, 24, 0.42);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        ">
 
-                st.markdown(
-                    f"""
-                    <h2 style="
-                        text-align: center;
-                        font-size: 34px;
-                        margin-top: 0;
-                        margin-bottom: 5px;
-                    ">
-                        {numero_temporada}
-                    </h2>
-                    """,
-                    unsafe_allow_html=True
-                )
+            <h3 style="
+                color: #FFFFFF;
+                font-size: 28px;
+                margin: 0 0 45px 0;
+            ">
+                Temporada
+            </h3>
 
-        # Mostramos el número del episodio dentro
-        # de una tercera tarjeta.
-        with tarjeta_episodio:
+            <h2 style="
+                color: #FF203D;
+                font-size: 42px;
+                margin: 0;
+            ">
+                {numero_temporada}
+            </h2>
 
-            with st.container(border=True):
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-                st.markdown(
-                    """
-                    <h3 style="
-                        text-align: center;
-                        margin-bottom: 8px;
-                    ">
-                        Episodio
-                    </h3>
-                    """,
-                    unsafe_allow_html=True
-                )
+# Mostramos el episodio dentro de una tarjeta
+# con un fondo oscuro para mantener el equilibrio visual.
+with tarjeta_episodio:
 
-                st.markdown(
-                    f"""
-                    <h2 style="
-                        text-align: center;
-                        font-size: 34px;
-                        margin-top: 0;
-                        margin-bottom: 5px;
-                    ">
-                        {episodio_mostrado}
-                    </h2>
-                    """,
-                    unsafe_allow_html=True
-                )
+    st.markdown(
+        f"""
+        <div style="
+            min-height: 245px;
+            padding: 28px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 12px;
+            background: rgba(20, 16, 27, 0.50);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        ">
 
+            <h3 style="
+                color: #FFFFFF;
+                font-size: 28px;
+                margin: 0 0 45px 0;
+            ">
+                Episodio
+            </h3>
+
+            <h2 style="
+                color: #FFFFFF;
+                font-size: 42px;
+                margin: 0;
+            ">
+                {episodio_mostrado}
+            </h2>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
         # Agregamos espacio antes de mostrar el título
         # del episodio en el que aparece la canción.
         st.write("")
