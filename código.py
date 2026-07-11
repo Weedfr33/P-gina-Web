@@ -264,7 +264,7 @@ if selected == "🧇 Hawkins":
             # reemplazarse por la descripción final del proyecto.
             st.markdown(
                 """
-                Es una página web dedicada a los fans y posibles fans de la serie de Stranger Things en donde
+                M&M'S THINGS (Music and Moments Things), es una página web dedicada a los fans y posibles fans de la serie de Stranger Things en donde
                 sus usuarios podrán encontrar información dedicada sobre los soundtracks de la serie en sus 
                 primeras 3 temporadas.
 
