@@ -837,34 +837,20 @@ elif selected == "📼 The Episodes":
 # dentro del menú principal de la página.
 elif selected == "🔦 Upside Down":
 
-    # Mostramos el título principal de la sección.
+    # Mostramos el título principal de esta sección.
     st.markdown(
-        """
-        <h1 style="
-            text-align: center;
-            font-size: 55px;
-            margin-top: 35px;
-            margin-bottom: 10px;
-        ">
-            Atrévete a cruzar al Upside Down
-        </h1>
-        """,
+        "<h1 style='text-align:center; font-size:55px; margin-top:35px; margin-bottom:10px;'>"
+        "Atrévete a cruzar al Upside Down"
+        "</h1>",
         unsafe_allow_html=True
     )
 
     # Agregamos una frase breve para explicar que esta sección
     # recomendará una canción del repositorio de manera aleatoria.
     st.markdown(
-        """
-        <p style="
-            text-align: center;
-            font-size: 19px;
-            color: #D8D5DC;
-            margin-bottom: 35px;
-        ">
-            Abre el portal y deja que Hawkins elija una canción para ti.
-        </p>
-        """,
+        "<p style='text-align:center; font-size:19px; color:#D8D5DC; margin-bottom:35px;'>"
+        "Abre el portal y deja que Hawkins elija una canción para ti."
+        "</p>",
         unsafe_allow_html=True
     )
 
@@ -887,10 +873,14 @@ elif selected == "🔦 Upside Down":
     # el usuario presiona el botón.
     if recomendar:
 
-        # Eliminamos temporalmente las filas que no tengan
-        # nombre de canción o artista para evitar resultados vacíos.
+        # Eliminamos las filas que no tengan nombre de canción,
+        # artista o portada para evitar recomendaciones incompletas.
         canciones_disponibles = datos.dropna(
-            subset=["Canción", "Artista"]
+            subset=[
+                "Canción",
+                "Artista",
+                "Portada (imagen)"
+            ]
         )
 
         # Elegimos una canción al azar y la guardamos
@@ -922,40 +912,33 @@ elif selected == "🔦 Upside Down":
         titulo_episodio = cancion["Título"]
         portada = cancion["Portada (imagen)"]
 
-        # Relacionamos el nombre que aparece en el Excel
-        # con una forma más clara de mostrar la temporada.
-        nombres_temporada = {
-            "Primera": "Temporada 1",
-            "Segunda": "Temporada 2",
-            "Tercera": "Temporada 3"
+        # Relacionamos el nombre utilizado en el Excel
+        # con el número correspondiente a cada temporada.
+        numeros_temporada = {
+            "Primera": "1",
+            "Segunda": "2",
+            "Tercera": "3"
         }
 
-        # Obtenemos el nombre completo de la temporada.
-        temporada_mostrada = nombres_temporada.get(
+        # Obtenemos el número de la temporada seleccionada.
+        numero_temporada = numeros_temporada.get(
             temporada,
             temporada
-        )
-
-        # Extraemos únicamente el número para mostrarlo
-        # dentro de la tarjeta de temporada.
-        numero_temporada = str(temporada_mostrada).replace(
-            "Temporada ",
-            ""
         )
 
         # Convertimos el año en un número entero cuando exista.
         if pd.notna(año):
             año_mostrado = int(año)
         else:
-            año_mostrado = "No disponible"
+            año_mostrado = "N/D"
 
         # Convertimos el episodio en un número entero cuando exista.
         if pd.notna(episodio):
             episodio_mostrado = int(episodio)
         else:
-            episodio_mostrado = "No disponible"
+            episodio_mostrado = "N/D"
 
-        # Agregamos espacio antes de mostrar la recomendación.
+        # Agregamos un espacio antes de mostrar la recomendación.
         st.write("")
         st.write("")
 
@@ -967,53 +950,25 @@ elif selected == "🔦 Upside Down":
 
         with columna_portada:
 
-            # Verificamos que exista una portada antes de mostrarla.
-            if pd.notna(portada):
-
-                # Mostramos la portada ocupando todo el ancho
-                # disponible dentro de la columna central.
-                st.image(
-                    portada,
-                    use_container_width=True
-                )
-
-            else:
-
-                # Si no existe una portada, mostramos un mensaje
-                # para que la página continúe funcionando.
-                with st.container(border=True):
-                    st.markdown("### 💿 Portada no disponible")
+            # Mostramos la portada de la canción
+            # ocupando todo el ancho de la columna central.
+            st.image(
+                portada,
+                use_container_width=True
+            )
 
         # Mostramos el nombre de la canción como el elemento
         # principal de la recomendación.
         st.markdown(
-            f"""
-            <h2 style="
-                text-align: center;
-                color: #FF203D;
-                font-size: 42px;
-                margin-top: 25px;
-                margin-bottom: 8px;
-            ">
-                {nombre_cancion}
-            </h2>
-            """,
+            f"<h2 style='text-align:center; color:#FF203D; font-size:42px; "
+            f"margin-top:25px; margin-bottom:8px;'>{nombre_cancion}</h2>",
             unsafe_allow_html=True
         )
 
         # Mostramos el nombre del artista debajo de la canción.
         st.markdown(
-            f"""
-            <h3 style="
-                text-align: center;
-                color: #FFFFFF;
-                font-size: 27px;
-                margin-top: 0;
-                margin-bottom: 35px;
-            ">
-                {artista}
-            </h3>
-            """,
+            f"<h3 style='text-align:center; color:#FFFFFF; font-size:27px; "
+            f"margin-top:0; margin-bottom:35px;'>{artista}</h3>",
             unsafe_allow_html=True
         )
 
@@ -1027,118 +982,74 @@ elif selected == "🔦 Upside Down":
         # Mostramos el año dentro de una tarjeta oscura.
         with tarjeta_año:
 
+            tarjeta_año_html = (
+                "<div style='height:230px; padding:25px 18px; "
+                "border:1px solid rgba(255,255,255,0.25); "
+                "border-radius:12px; background:rgba(44,7,15,0.50); "
+                "display:flex; flex-direction:column; "
+                "justify-content:center; align-items:center; "
+                "text-align:center;'>"
+                "<h3 style='color:#FFFFFF; font-size:27px; margin:0 0 35px 0;'>"
+                "Año"
+                "</h3>"
+                f"<h2 style='color:#FFFFFF; font-size:42px; margin:0;'>"
+                f"{año_mostrado}"
+                "</h2>"
+                "</div>"
+            )
+
             st.markdown(
-                f"""
-                <div style="
-                    min-height: 245px;
-                    padding: 28px 20px;
-                    border: 1px solid rgba(255, 255, 255, 0.22);
-                    border-radius: 12px;
-                    background: rgba(44, 7, 15, 0.46);
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    text-align: center;
-                ">
-
-                    <h3 style="
-                        color: #FFFFFF;
-                        font-size: 28px;
-                        margin: 0 0 45px 0;
-                    ">
-                        Año
-                    </h3>
-
-                    <h2 style="
-                        color: #FFFFFF;
-                        font-size: 42px;
-                        margin: 0;
-                    ">
-                        {año_mostrado}
-                    </h2>
-
-                </div>
-                """,
+                tarjeta_año_html,
                 unsafe_allow_html=True
             )
 
-        # Mostramos la temporada dentro de una tarjeta
-        # con un tono rojizo para darle mayor énfasis.
+        # Mostramos la temporada dentro de una tarjeta rojiza
+        # para destacar este dato respecto a los demás.
         with tarjeta_temporada:
 
+            tarjeta_temporada_html = (
+                "<div style='height:230px; padding:25px 18px; "
+                "border:1px solid rgba(255,32,61,0.65); "
+                "border-radius:12px; background:rgba(92,8,24,0.58); "
+                "display:flex; flex-direction:column; "
+                "justify-content:center; align-items:center; "
+                "text-align:center; "
+                "box-shadow:0 0 18px rgba(255,32,61,0.18);'>"
+                "<h3 style='color:#FFFFFF; font-size:27px; margin:0 0 35px 0;'>"
+                "Temporada"
+                "</h3>"
+                f"<h2 style='color:#FF203D; font-size:42px; margin:0;'>"
+                f"{numero_temporada}"
+                "</h2>"
+                "</div>"
+            )
+
             st.markdown(
-                f"""
-                <div style="
-                    min-height: 245px;
-                    padding: 28px 20px;
-                    border: 1px solid rgba(255, 32, 61, 0.38);
-                    border-radius: 12px;
-                    background: rgba(92, 8, 24, 0.42);
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    text-align: center;
-                ">
-
-                    <h3 style="
-                        color: #FFFFFF;
-                        font-size: 28px;
-                        margin: 0 0 45px 0;
-                    ">
-                        Temporada
-                    </h3>
-
-                    <h2 style="
-                        color: #FF203D;
-                        font-size: 42px;
-                        margin: 0;
-                    ">
-                        {numero_temporada}
-                    </h2>
-
-                </div>
-                """,
+                tarjeta_temporada_html,
                 unsafe_allow_html=True
             )
 
-        # Mostramos el episodio dentro de una tercera tarjeta.
+        # Mostramos el episodio dentro de una tercera tarjeta oscura.
         with tarjeta_episodio:
 
+            tarjeta_episodio_html = (
+                "<div style='height:230px; padding:25px 18px; "
+                "border:1px solid rgba(255,255,255,0.25); "
+                "border-radius:12px; background:rgba(20,16,27,0.55); "
+                "display:flex; flex-direction:column; "
+                "justify-content:center; align-items:center; "
+                "text-align:center;'>"
+                "<h3 style='color:#FFFFFF; font-size:27px; margin:0 0 35px 0;'>"
+                "Episodio"
+                "</h3>"
+                f"<h2 style='color:#FFFFFF; font-size:42px; margin:0;'>"
+                f"{episodio_mostrado}"
+                "</h2>"
+                "</div>"
+            )
+
             st.markdown(
-                f"""
-                <div style="
-                    min-height: 245px;
-                    padding: 28px 20px;
-                    border: 1px solid rgba(255, 255, 255, 0.22);
-                    border-radius: 12px;
-                    background: rgba(20, 16, 27, 0.50);
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    text-align: center;
-                ">
-
-                    <h3 style="
-                        color: #FFFFFF;
-                        font-size: 28px;
-                        margin: 0 0 45px 0;
-                    ">
-                        Episodio
-                    </h3>
-
-                    <h2 style="
-                        color: #FFFFFF;
-                        font-size: 42px;
-                        margin: 0;
-                    ">
-                        {episodio_mostrado}
-                    </h2>
-
-                </div>
-                """,
+                tarjeta_episodio_html,
                 unsafe_allow_html=True
             )
 
@@ -1148,44 +1059,26 @@ elif selected == "🔦 Upside Down":
 
         # Mostramos el título del episodio en el que aparece
         # la canción dentro de una tarjeta más compacta.
+        bloque_episodio_html = (
+            "<div style='max-width:950px; margin:0 auto 30px auto; "
+            "padding:25px 35px; text-align:center; "
+            "background:rgba(8,7,15,0.76); "
+            "border:1px solid rgba(255,32,61,0.42); "
+            "border-radius:12px; "
+            "box-shadow:0 0 18px rgba(0,0,0,0.30);'>"
+            "<p style='color:#D8D5DC; font-size:18px; margin:0 0 8px 0;'>"
+            "Aparece en"
+            "</p>"
+            f"<h2 style='color:#FFFFFF; font-size:30px; margin:0 0 12px 0;'>"
+            f"{titulo_episodio}"
+            "</h2>"
+            "<p style='color:#D8D5DC; font-size:15px; margin:0;'>"
+            "Seleccionada aleatoriamente del repositorio musical de Hawkins."
+            "</p>"
+            "</div>"
+        )
+
         st.markdown(
-            f"""
-            <div style="
-                max-width: 950px;
-                margin: 0 auto 30px auto;
-                padding: 28px 35px;
-                text-align: center;
-                background: rgba(8, 7, 15, 0.72);
-                border: 1px solid rgba(255, 32, 61, 0.35);
-                border-radius: 12px;
-                box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
-            ">
-
-                <p style="
-                    color: #D8D5DC;
-                    font-size: 18px;
-                    margin: 0 0 8px 0;
-                ">
-                    Aparece en
-                </p>
-
-                <h2 style="
-                    color: #FFFFFF;
-                    font-size: 30px;
-                    margin: 0 0 12px 0;
-                ">
-                    {titulo_episodio}
-                </h2>
-
-                <p style="
-                    color: #D8D5DC;
-                    font-size: 15px;
-                    margin: 0;
-                ">
-                    Seleccionada aleatoriamente del repositorio musical de Hawkins.
-                </p>
-
-            </div>
-            """,
+            bloque_episodio_html,
             unsafe_allow_html=True
         )
