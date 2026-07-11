@@ -904,32 +904,32 @@ elif selected == "🔦 Upside Down":
             # y existe una canción recomendada para mostrar.
             if "cancion_recomendada" in st.session_state:
 
-        # Recuperamos la canción que fue seleccionada aleatoriamente.
-        cancion = st.session_state["cancion_recomendada"]
+    # Recuperamos la canción que fue seleccionada aleatoriamente.
+    cancion = st.session_state["cancion_recomendada"]
 
-        # Guardamos por separado los datos que utilizaremos
-        # para construir la recomendación.
-        nombre_cancion = cancion["Canción"]
-        artista = cancion["Artista"]
-        año = cancion["Año"]
-        temporada = cancion["Temporada"]
-        episodio = cancion["Episodio"]
-        titulo_episodio = cancion["Título"]
-        portada = cancion["Portada (imagen)"]
+    # Guardamos por separado los datos que utilizaremos
+    # para construir la recomendación.
+    nombre_cancion = cancion["Canción"]
+    artista = cancion["Artista"]
+    año = cancion["Año"]
+    temporada = cancion["Temporada"]
+    episodio = cancion["Episodio"]
+    titulo_episodio = cancion["Título"]
+    portada = cancion["Portada (imagen)"]
 
-        # Relacionamos el nombre registrado en el Excel
-        # con una forma más clara de mostrar la temporada.
-        nombres_temporada = {
-            "Primera": "Temporada 1",
-            "Segunda": "Temporada 2",
-            "Tercera": "Temporada 3"
-        }
+    # Relacionamos el nombre registrado en el Excel
+    # con una forma más clara de mostrar la temporada.
+    nombres_temporada = {
+        "Primera": "Temporada 1",
+        "Segunda": "Temporada 2",
+        "Tercera": "Temporada 3"
+    }
 
-        # Obtenemos el nombre que aparecerá en la página.
-        temporada_mostrada = nombres_temporada.get(
-            temporada,
-            temporada
-        )
+    # Obtenemos el nombre que aparecerá en la página.
+    temporada_mostrada = nombres_temporada.get(
+        temporada,
+        temporada
+    )
 
         # Convertimos el año en un número entero cuando exista.
         if pd.notna(año):
