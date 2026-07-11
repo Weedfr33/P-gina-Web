@@ -225,7 +225,7 @@ if selected == "🧇 Hawkins":
             color: #D8D5DC;
             margin-bottom: 50px;
         ">
-            COLOCAR AQUÍ EL TEXTO.
+            !Hogar de monstruos, canciones inéditas y demás rarezas!
         </p>
         """,
         unsafe_allow_html=True
