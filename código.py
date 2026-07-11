@@ -187,8 +187,7 @@ if selected == "🧇 Hawkins":
             color: #D8D5DC;
             margin-bottom: 50px;
         ">
-            Explora la música escondida detrás de las tres primeras temporadas
-            de Stranger Things.
+            COLOCAR AQUÍ EL TEXTO.
         </p>
         """,
         unsafe_allow_html=True
@@ -227,12 +226,9 @@ if selected == "🧇 Hawkins":
             # reemplazarse por la descripción final del proyecto.
             st.markdown(
                 """
-                M&M Things es una página interactiva inspirada en
-                **Stranger Things** que reúne las canciones utilizadas
-                en las temporadas 1, 2 y 3 de la serie.
+                COLOCAR AQUÍ EL TEXTO.
 
-                Aquí irá la descripción completa del proyecto cuando
-                el texto final esté terminado.
+                COLOCAR AQUÍ EL TEXTO.
                 """
             )
 
@@ -304,9 +300,7 @@ if selected == "🧇 Hawkins":
             # el objetivo final del proyecto esté listo.
             st.markdown(
                 """
-                El objetivo de esta página es permitir que los usuarios
-                exploren y descubran las canciones que forman parte de
-                las primeras tres temporadas de *Stranger Things*.
+                COLOCAR AQUÍ EL TEXTO.
 
                 Aquí irá la versión definitiva del objetivo.
                 """
