@@ -639,126 +639,90 @@ elif selected == "🧪 Hawkins Lab":
             # Agregamos espacio entre una canción y otra.
             st.write("")
 
-elif selected == '📼 The Episodes':
-    st.markdown("<h1 style='text-align: center;'>La música episodio por episodio</h2>", unsafe_allow_html=True)
+elif selected == "📼 The Episodes":
 
-    graficos = ['📊Gráfico de barras', '📊Gráfico circular', '☁️ Nube de palabras 1', '☁️ Nube de palabras 2', '🗺️Mapa 1']
+    # Mostramos el título principal.
+    st.markdown(
+        """
+        <h1 style="
+            text-align:center;
+            font-size:55px;
+            margin-top:35px;
+            margin-bottom:25px;
+        ">
+            La historia episodio por episodio
+        </h1>
+        """,
+        unsafe_allow_html=True
+    )
 
-    grafico_seleccionado = st.selectbox('Selecciona un gráfico', graficos)
+    # Creamos la lista de temporadas.
+    opciones_temporada = [
+        "Temporada 1",
+        "Temporada 2",
+        "Temporada 3"
+    ]
 
-    # Mostramos el gráfico seleccionado
-    if grafico_seleccionado == '📊Gráfico de barras':
-        # Título de la sección
-        st.subheader("📊 Gráfico 1: Goles de Barcelona")
+    # Mostramos la barra desplegable.
+    temporada_seleccionada = st.selectbox(
+        "Selecciona una temporada",
+        opciones_temporada
+    )
+    temporadas_excel = {
+    "Temporada 1": "Primera",
+    "Temporada 2": "Segunda",
+    "Temporada 3": "Tercera"
+}
 
-        # Interpretación del gráfico
-        st.markdown(
-            """
-            <div style='text-align: justify; font-size: 20px;'>
-            Este gráfico muestra la distribución de la cantidad de goles anotados y recibidos por el FC Barcelona, diferenciando los partidos disputados como local y como visitante. A partir de la comparación de las frecuencias, es posible observar el rendimiento ofensivo y defensivo del equipo en ambas condiciones, identificando los marcadores que se repiten con mayor frecuencia.
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+nombre_temporada = temporadas_excel[temporada_seleccionada]
 
-        # Centrar la imagen utilizando tres columnas
-        col3, col4, col5 = st.columns([1, 5, 1])
+datos_temporada = datos[
+    datos["Temporada"] == nombre_temporada
+]
+episodios = sorted(
+    datos_temporada["Episodio"]
+    .dropna()
+    .unique()
+)
+for episodio in episodios:
 
-        with col4:
-            st.image(
-                "Frecuencia_goles_Barcelona.png",
-                width=800
-            )
+    datos_episodio = datos_temporada[
+        datos_temporada["Episodio"] == episodio
+    ]
 
-    elif grafico_seleccionado == '📊Gráfico circular':
-        # Título de la sección
-        st.subheader("📊 Gráfico 2: Rendimiento de Barcelona como visitante")
+    titulo = datos_episodio["Título"].iloc[0]
 
-        # Interpretación del gráfico
-        st.markdown(
-            """
-            <div style='text-align: justify; font-size: 18px;'>
-            Este gráfico circular muestra la proporción de partidos ganados, empatados y perdidos por el FC Barcelona cuando juega como visitante. Se observa que el equipo obtuvo la victoria en la mayoría de sus encuentros (63,2 %), mientras que las derrotas representan el 31,6 % y los empates solo el 5,3 %. Estos resultados reflejan un rendimiento positivo del equipo fuera de casa.
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+    descripcion = datos_episodio["Descripción del ep."].iloc[0]
 
-        # Centrar la imagen
-        col6, col7, col8 = st.columns([1, 5, 1])
+    st.container(border=True)
 
-        with col7:
-            st.image(
-                "Rendimiento_Barcelona_visitante.png",
-                width=800
-            )
-    elif grafico_seleccionado == '☁️ Nube de palabras 1':
-        # Título de la sección
-        st.subheader("☁️ Nube de palabras 1: Harry Potter")
+    st.markdown(
+        f"""
+        <h2 style="
+            color:#FF203D;
+            margin-bottom:5px;
+        ">
+            Episodio {int(episodio)}
+        </h2>
+        """,
+        unsafe_allow_html=True
+    )
 
-        # Interpretación del gráfico
-        st.markdown(
-            """
-            <div style='text-align: justify; font-size: 18px;'>
-            Esta nube de palabras representa los términos con mayor frecuencia en un extracto de Harry Potter. El tamaño de cada palabra indica la cantidad de veces que aparece en el texto, permitiendo identificar los conceptos, personajes y elementos que tienen mayor presencia. Esta visualización facilita reconocer, de forma rápida, los temas y el vocabulario predominante del fragmento analizado.
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+    st.markdown(
+        f"""
+        <h3 style="
+            color:white;
+            margin-top:0;
+        ">
+            {titulo}
+        </h3>
+        """,
+        unsafe_allow_html=True
+    )
 
-        # Centrar la imagen
-        col6, col7, col8 = st.columns([1, 5, 1])
+    st.write(descripcion)
 
-        with col7:
-            st.image(
-                "nube_palabras_harry_potter.png",
-                width=800
-            )
-    elif grafico_seleccionado == '☁️ Nube de palabras 2':
-        # Título de la sección
-        st.subheader("☁️ Nube de palabras 2: Letra de canción")
-
-        # Interpretación del gráfico
-        st.markdown(
-            """
-            <div style='text-align: justify; font-size: 18px;'>
-            Esta nube de palabras representa los términos más frecuentes de la letra de una canción. Se observa el predominio de palabras como final, que, no y ya, las cuales reflejan la importancia de ciertos conceptos y emociones dentro de la composición. De esta manera, la visualización permite identificar de forma rápida los elementos con mayor presencia en la letra.
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-        # Centrar la imagen
-        col6, col7, col8 = st.columns([1, 5, 1])
-
-        with col7:
-            st.image(
-                "nube_palabras_letra.png",
-                width=800
-            )
-    elif grafico_seleccionado == '🗺️Mapa 1':
-        # Título de la sección
-        st.subheader("🗺️ Mapa: TOP 5 Películas favoritas")
-
-        # Interpretación del mapa
-        st.markdown(
-            """
-            <div style='text-align: justify; font-size: 18px;'>
-            Este mapa muestra la ubicación geográfica de los principales lugares de grabación de mis cinco películas favoritas: <strong>Aftersun</strong>, <strong>La peor persona del mundo</strong>, <strong>Titane</strong>, <strong>Trainspotting</strong> y <strong>Enter the Void</strong>. Al seleccionar cada marcador es posible consultar información adicional de la película, como el <strong>director</strong>, el <strong>año</strong> de estreno, el <strong>país</strong> de producción, el <strong>género</strong>, el <strong>tema principal</strong> y el <strong>lugar</strong> específico donde se realizó el rodaje. De esta manera, el mapa permite visualizar tanto la distribución geográfica de las obras como algunos de sus datos más relevantes.
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-        # Cargar el mapa HTML generado previamente
-        with open("mapa_peliculas.html", "r", encoding="utf-8") as f:
-            html_content = f.read()
-
-        # Mostrar el mapa interactivo
-        components.html(
-            html_content,
-            height=600
-        )
+    st.divider()
 elif selected == '🔦 Upside Down':
     st.markdown("<h1 style='text-align: center;'>Atrévete a descubrir algo nuevo</h2>", unsafe_allow_html=True)
 
