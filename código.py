@@ -417,38 +417,46 @@ if selected == "🧇 Hawkins":
                 """
             )
 
-# ---------------------------------------------------------
-# TARJETA: UPSIDE DOWN
-# ---------------------------------------------------------
+    # ---------------------------------------------------------
+    # TARJETA: UPSIDE DOWN
+    # ---------------------------------------------------------
 
-with tarjeta_recomendacion:
+    # Utilizamos la tercera columna para presentar la sección
+    # que recomendará una canción aleatoria del repositorio.
+    with tarjeta_recomendacion:
 
-    # Esta tarjeta explica la función de recomendación
-    # aleatoria de la página.
-    with st.container(border=True):
+        # Creamos una tarjeta con borde para mantener el mismo
+        # diseño utilizado en las otras dos secciones.
+        with st.container(border=True):
 
-        st.markdown(
-            """
-            <h3 style="
-                text-align: center;
-                color: #FFFFFF;
-                font-size: 26px;
-            ">
-                🔦 Upside Down
-            </h3>
-            """,
-            unsafe_allow_html=True
-        )
+            # Mostramos el nombre de la sección dentro de la tarjeta.
+            st.markdown(
+                """
+                <h3 style="
+                    text-align: center;
+                    color: #FFFFFF;
+                    font-size: 26px;
+                ">
+                    🔦 Upside Down
+                </h3>
+                """,
+                unsafe_allow_html=True
+            )
 
-        st.markdown(
-            """
-            Recibe una canción aleatoria del repositorio y descubre
-            en qué temporada y episodio aparece.
-            """
-        )
+            # Explicamos brevemente qué encontrará el usuario
+            # cuando ingrese a esta sección.
+            st.markdown(
+                """
+                Recibe una canción aleatoria del repositorio y descubre
+                en qué temporada y episodio aparece.
+                """
+            )
 
-st.write("")
-st.write("")
+    # Agregamos un espacio al final de la portada para que
+    # las tarjetas no queden pegadas a la siguiente sección.
+    st.write("")
+    st.write("")
+
 
 elif selected == "🧪 Hawkins Lab":
 
