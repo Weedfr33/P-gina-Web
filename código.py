@@ -450,7 +450,7 @@ if selected == "🧇 Hawkins":
     st.write("")
     st.write("")
 
-    # ---------------------------------------------------------
+# ---------------------------------------------------------
 # CUARTO BLOQUE: MENSAJE FINAL
 # ---------------------------------------------------------
 
@@ -486,7 +486,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-    
 elif selected == '🧪 Hawkins Lab':
     st.markdown("<h1 style='text-align: center;'>¿Qué canción buscas?</h1>", unsafe_allow_html=True)
 
