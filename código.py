@@ -625,7 +625,7 @@ elif selected == "🧪 Hawkins Lab":
                 # Mostramos la portada guardada en el Excel.
                 st.image(
                     cancion["Portada (imagen)"],
-                    width=180
+                    width=250
                 )
 
             with columna_texto:
