@@ -833,8 +833,8 @@ elif selected == "🔦 Upside Down":
         unsafe_allow_html=True
     )
 
-    # Añadimos una frase breve para presentar la función
-    # de recomendación aleatoria.
+    # Agregamos una frase breve para explicar que esta sección
+    # recomendará una canción de manera aleatoria.
     st.markdown(
         """
         <p style="
@@ -849,225 +849,227 @@ elif selected == "🔦 Upside Down":
         unsafe_allow_html=True
     )
 
-    # Creamos una columna central para que el botón
-    # aparezca alineado en el centro de la página.
+    # Creamos tres columnas para colocar el botón en el centro
+    # y evitar que ocupe todo el ancho de la página.
     espacio_izquierdo, columna_boton, espacio_derecho = st.columns(
-        [2, 2, 2]
+        [1.5, 2, 1.5]
     )
 
     with columna_boton:
 
-        # Creamos un botón que permitirá generar
+        # Creamos el botón que permitirá generar
         # una recomendación aleatoria.
         recomendar = st.button(
             "🔦 Abrir el portal",
             use_container_width=True
         )
 
-    # Guardamos una canción aleatoria dentro de session_state
-    # para que la recomendación no cambie cada vez que Streamlit
-    # vuelve a ejecutar el código.
-    if recomendar or "cancion_recomendada" not in st.session_state:
+    # Seleccionamos una canción aleatoria únicamente cuando
+    # el usuario presiona el botón "Abrir el portal".
+    if recomendar:
 
-        # Seleccionamos una fila aleatoria de toda la base de datos.
-        st.session_state.cancion_recomendada = datos.sample(1).iloc[0]
+        # Eliminamos temporalmente las filas que no tengan
+        # nombre de canción o artista para evitar recomendaciones vacías.
+        canciones_disponibles = datos.dropna(
+            subset=["Canción", "Artista"]
+        )
 
-    # Recuperamos la canción seleccionada anteriormente.
-    cancion = st.session_state.cancion_recomendada
+        # Seleccionamos una fila aleatoria de la base de datos
+        # y la guardamos para que no cambie mientras se muestra.
+        st.session_state["cancion_recomendada"] = (
+            canciones_disponibles.sample(1).iloc[0]
+        )
 
-    # Obtenemos los datos principales de la recomendación.
-    nombre_cancion = cancion["Canción"]
-    artista = cancion["Artista"]
-    año = cancion["Año"]
-    temporada = cancion["Temporada"]
-    episodio = cancion["Episodio"]
-    titulo_episodio = cancion["Título"]
-    portada = cancion["Portada (imagen)"]
+    # Verificamos si el usuario ya presionó el botón
+    # y existe una canción recomendada para mostrar.
+    if "cancion_recomendada" in st.session_state:
 
-    # Agregamos un espacio antes de mostrar la recomendación.
-    st.write("")
-    st.write("")
+        # Recuperamos la canción que fue seleccionada aleatoriamente.
+        cancion = st.session_state["cancion_recomendada"]
 
-    # Mostramos la portada de la canción en una columna central
-    # para que tenga mayor protagonismo que en Hawkins Lab.
-    espacio_1, columna_portada, espacio_2 = st.columns([1.5, 2, 1.5])
+        # Guardamos por separado los datos que utilizaremos
+        # para construir la recomendación.
+        nombre_cancion = cancion["Canción"]
+        artista = cancion["Artista"]
+        año = cancion["Año"]
+        temporada = cancion["Temporada"]
+        episodio = cancion["Episodio"]
+        titulo_episodio = cancion["Título"]
+        portada = cancion["Portada (imagen)"]
 
-    with columna_portada:
+        # Relacionamos el nombre registrado en el Excel
+        # con una forma más clara de mostrar la temporada.
+        nombres_temporada = {
+            "Primera": "Temporada 1",
+            "Segunda": "Temporada 2",
+            "Tercera": "Temporada 3"
+        }
 
-        # Verificamos que exista una portada antes de mostrarla.
-        if pd.notna(portada):
+        # Obtenemos el nombre que aparecerá en la página.
+        temporada_mostrada = nombres_temporada.get(
+            temporada,
+            temporada
+        )
 
-            st.image(
-                portada,
-                use_container_width=True
-            )
-
+        # Convertimos el año en un número entero cuando exista.
+        if pd.notna(año):
+            año_mostrado = int(año)
         else:
+            año_mostrado = "No disponible"
 
-            # Si no hay una imagen registrada, mostramos
-            # una tarjeta provisional.
-            with st.container(border=True):
-                st.markdown(
-                    """
-                    ### 💿 Sin portada
+        # Convertimos el episodio en un número entero cuando exista.
+        if pd.notna(episodio):
+            episodio_mostrado = int(episodio)
+        else:
+            episodio_mostrado = "No disponible"
 
-                    No se encontró una imagen para esta canción.
-                    """
+        # Agregamos espacio antes de mostrar la recomendación.
+        st.write("")
+        st.write("")
+
+        # Creamos tres columnas para colocar la portada en el centro
+        # y darle mayor protagonismo que en Hawkins Lab.
+        espacio_portada_1, columna_portada, espacio_portada_2 = st.columns(
+            [1.4, 2.2, 1.4]
+        )
+
+        with columna_portada:
+
+            # Verificamos que exista una portada antes de mostrarla.
+            if pd.notna(portada):
+
+                # Mostramos la portada ocupando todo el ancho
+                # disponible dentro de la columna central.
+                st.image(
+                    portada,
+                    use_container_width=True
                 )
 
-    # Mostramos el nombre de la canción y el artista
-    # como los elementos principales de la recomendación.
-    st.markdown(
-        f"""
-        <h2 style="
-            text-align: center;
-            color: #FF203D;
-            font-size: 42px;
-            margin-top: 25px;
-            margin-bottom: 5px;
-        ">
-            {nombre_cancion}
-        </h2>
+            else:
 
-        <h3 style="
-            text-align: center;
-            color: #FFFFFF;
-            font-size: 26px;
-            margin-top: 0;
-            margin-bottom: 30px;
-        ">
-            {artista}
-        </h3>
-        """,
-        unsafe_allow_html=True
-    )
+                # Si la canción no tiene portada, mostramos
+                # un mensaje sin detener la aplicación.
+                with st.container(border=True):
+                    st.markdown("### 💿 Portada no disponible")
 
-    # Creamos tres tarjetas pequeñas para organizar
-    # los datos principales de la canción.
-    tarjeta_año, tarjeta_temporada, tarjeta_episodio = st.columns(
-        3,
-        gap="large"
-    )
-
-    with tarjeta_año:
-
-        with st.container(border=True):
-
-            st.markdown(
-                f"""
-                <div style="text-align: center;">
-                    <p style="
-                        color: #D8D5DC;
-                        margin-bottom: 5px;
-                    ">
-                        Año
-                    </p>
-
-                    <h3 style="
-                        color: #FFFFFF;
-                        margin-top: 0;
-                    ">
-                        {int(año)}
-                    </h3>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-
-    with tarjeta_temporada:
-
-        with st.container(border=True):
-
-            st.markdown(
-                f"""
-                <div style="text-align: center;">
-                    <p style="
-                        color: #D8D5DC;
-                        margin-bottom: 5px;
-                    ">
-                        Temporada
-                    </p>
-
-                    <h3 style="
-                        color: #FFFFFF;
-                        margin-top: 0;
-                    ">
-                        {temporada}
-                    </h3>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-
-    with tarjeta_episodio:
-
-        with st.container(border=True):
-
-            st.markdown(
-                f"""
-                <div style="text-align: center;">
-                    <p style="
-                        color: #D8D5DC;
-                        margin-bottom: 5px;
-                    ">
-                        Episodio
-                    </p>
-
-                    <h3 style="
-                        color: #FFFFFF;
-                        margin-top: 0;
-                    ">
-                        {int(episodio)}
-                    </h3>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-
-    # Mostramos el título del episodio en el que aparece la canción.
-    st.markdown(
-        f"""
-        <div style="
-            max-width: 850px;
-            margin: 35px auto 0 auto;
-            padding: 25px;
-            text-align: center;
-            background: rgba(8, 7, 15, 0.80);
-            border: 1px solid rgba(255, 32, 61, 0.35);
-            border-radius: 10px;
-        ">
-
-            <p style="
-                color: #D8D5DC;
-                font-size: 17px;
+        # Mostramos el nombre de la canción como el elemento
+        # principal de la recomendación.
+        st.markdown(
+            f"""
+            <h2 style="
+                text-align: center;
+                color: #FF203D;
+                font-size: 42px;
+                margin-top: 25px;
                 margin-bottom: 8px;
             ">
-                Aparece en
-            </p>
+                {nombre_cancion}
+            </h2>
+            """,
+            unsafe_allow_html=True
+        )
 
+        # Mostramos el nombre del artista debajo de la canción.
+        st.markdown(
+            f"""
             <h3 style="
+                text-align: center;
                 color: #FFFFFF;
-                font-size: 25px;
+                font-size: 27px;
                 margin-top: 0;
-                margin-bottom: 12px;
+                margin-bottom: 35px;
             ">
-                {titulo_episodio}
+                {artista}
             </h3>
+            """,
+            unsafe_allow_html=True
+        )
 
-            <p style="
-                color: #F2F2F2;
-                font-size: 16px;
-                margin-bottom: 0;
-            ">
-                Esta canción fue seleccionada aleatoriamente
-                desde el repositorio musical de Hawkins.
-            </p>
+        # Creamos tres columnas para organizar los datos
+        # principales de la recomendación.
+        tarjeta_año, tarjeta_temporada, tarjeta_episodio = st.columns(
+            3,
+            gap="large"
+        )
 
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+        # Mostramos el año dentro de una tarjeta.
+        with tarjeta_año:
 
-# elif selected == '🧪 Hawkins Lab':
-    # st.markdown("<h1 style='text-align: center;'>Analizando el soundtrack</h2>", unsafe_allow_html=True)
+            with st.container(border=True):
+                st.markdown(
+                    "<h3 style='text-align: center;'>Año</h3>",
+                    unsafe_allow_html=True
+                )
 
+                st.markdown(
+                    f"<h2 style='text-align: center;'>{año_mostrado}</h2>",
+                    unsafe_allow_html=True
+                )
+
+        # Mostramos la temporada dentro de una segunda tarjeta.
+        with tarjeta_temporada:
+
+            with st.container(border=True):
+                st.markdown(
+                    "<h3 style='text-align: center;'>Temporada</h3>",
+                    unsafe_allow_html=True
+                )
+
+                st.markdown(
+                    f"<h2 style='text-align: center;'>{temporada_mostrada}</h2>",
+                    unsafe_allow_html=True
+                )
+
+        # Mostramos el episodio dentro de una tercera tarjeta.
+        with tarjeta_episodio:
+
+            with st.container(border=True):
+                st.markdown(
+                    "<h3 style='text-align: center;'>Episodio</h3>",
+                    unsafe_allow_html=True
+                )
+
+                st.markdown(
+                    f"<h2 style='text-align: center;'>{episodio_mostrado}</h2>",
+                    unsafe_allow_html=True
+                )
+
+        # Agregamos espacio antes de mostrar el contexto
+        # en el que aparece la canción.
+        st.write("")
+        st.write("")
+
+        # Mostramos el título del episodio dentro de una tarjeta.
+        with st.container(border=True):
+
+            st.markdown(
+                "<h3 style='text-align: center; color: #D8D5DC;'>Aparece en</h3>",
+                unsafe_allow_html=True
+            )
+
+            st.markdown(
+                f"""
+                <h2 style="
+                    text-align: center;
+                    color: #FFFFFF;
+                    margin-top: 5px;
+                ">
+                    {titulo_episodio}
+                </h2>
+                """,
+                unsafe_allow_html=True
+            )
+
+            st.markdown(
+                """
+                <p style="
+                    text-align: center;
+                    color: #D8D5DC;
+                    font-size: 17px;
+                ">
+                    Esta canción fue seleccionada aleatoriamente
+                    desde el repositorio musical de Hawkins.
+                </p>
+                """,
+                unsafe_allow_html=True
+            )
