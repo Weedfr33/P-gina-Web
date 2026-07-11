@@ -155,14 +155,14 @@ selected = option_menu(
         }
     }
 )
-# Verificamos si el usuario seleccionó la sección "Hawkins"
-# dentro del menú de navegación.
-if selected == "🧇 Hawkins":
+    # Verificamos si el usuario seleccionó la sección "Hawkins"
+    # dentro del menú de navegación.
+    if selected == "🧇 Hawkins":
 
     # Mostramos el título principal de la sección.
-    st.markdown(
-        "<h1 style='text-align: center;'>Bienvenido a Hawkins</h1>",
-        unsafe_allow_html=True
+        st.markdown(
+            "<h1 style='text-align: center;'>Bienvenido a Hawkins</h1>",
+            unsafe_allow_html=True
     )
 
     # -------------------------
@@ -175,64 +175,64 @@ if selected == "🧇 Hawkins":
     # Aquí irá una frase introductoria del proyecto.
     # st.markdown("...")
 
-    st.divider()
+            st.divider()
 
     # -------------------------
     # ¿Qué es M&M Things?
     # -------------------------
 
-    st.subheader("📖 ¿Qué es M&M Things?")
+            st.subheader("📖 ¿Qué es M&M Things?")
 
     # Aquí irá la descripción general del proyecto.
     # st.write("...")
 
-    st.divider()
+            st.divider()
 
     # -------------------------
     # Objetivo del proyecto
     # -------------------------
 
-    st.subheader("🎯 Objetivo")
+            st.subheader("🎯 Objetivo")
 
     # Aquí explicaremos cuál es el propósito de la página.
     # st.write("...")
 
-    st.divider()
+            st.divider()
 
     # -------------------------
     # ¿Qué encontrarás aquí?
     # -------------------------
 
-    st.subheader("🧭 ¿Qué encontrarás en esta página?")
+            st.subheader("🧭 ¿Qué encontrarás en esta página?")
 
     # Aquí describiremos brevemente cada sección de la página.
     # 📺 The Episodes
     # 🧪 Hawkins Lab
     # 🔦 Upside Down
 
-    st.divider("escribir aquí")
+            st.divider("escribir aquí")
 
     # -------------------------
     # ¿Por qué Stranger Things?
     # -------------------------
 
-    st.subheader("🌌 ¿Por qué Stranger Things?")
+            st.subheader("🌌 ¿Por qué Stranger Things?")
 
     # Aquí explicaremos por qué elegimos la serie
     # como inspiración para el proyecto.
 
-    st.divider("escribir aquí")
+           st.divider("escribir aquí")
 
     # -------------------------
     # ¿Cómo utilizar la página?
     # -------------------------
 
-    st.subheader("🖱️ ¿Cómo navegar por la página?")
+            st.subheader("🖱️ ¿Cómo navegar por la página?")
 
     # Aquí explicaremos cómo recorrer las diferentes
     # secciones de la aplicación.
 
-    st.divider("escribir aquí")
+            st.divider("escribir aquí")
 
     # -------------------------
     # Comienza la exploración
