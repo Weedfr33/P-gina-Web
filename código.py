@@ -244,37 +244,58 @@ if selected == "🧇 Hawkins":
     with columna_texto:
 
         st.markdown(
-            """
-            <h2 style="
-                color: #FF203D;
-                font-size: 35px;
-                margin-bottom: 20px;
-            ">
-                ¿Qué es M&M Things?
-            </h2>
-            """,
-            unsafe_allow_html=True
-        )
+        """
+        <h2 style="
+            color:#FF203D;
+            font-size:55px;
+            text-align:center;
+            margin-bottom:35px;
+        ">
+            ¿Qué es M&M Things?
+        </h2>
 
-        # Creamos un contenedor con borde para separar visualmente
-        # la descripción del proyecto del resto de la portada.
-        with st.container(border=True):
+        <div style="
+            background:rgba(8,7,15,0.80);
+            border:1px solid rgba(255,255,255,0.20);
+            border-left:6px solid #FF203D;
+            border-radius:15px;
+            padding:35px;
+            box-shadow:0 0 25px rgba(0,0,0,0.35);
+        ">
 
-            # Este texto es provisional y posteriormente puede
-            # reemplazarse por la descripción final del proyecto.
-            st.markdown(
-                """
-                M&M'S THINGS (Music and Moments Things), es una página web dedicada a los fans y posibles fans de la serie de Stranger Things en donde
-                sus usuarios podrán encontrar información dedicada sobre los soundtracks de la serie en sus 
-                primeras 3 temporadas.
+        <p style="
+            color:#F5F1F3;
+            font-size:19px;
+            line-height:1.8;
+            margin-bottom:28px;
+            text-align:justify;
+        ">
+        <strong style="color:#FF203D;">M&M THINGS</strong>
+        (Music and Moments Things) es una página web dedicada a los
+        fans y futuros fans de <strong>Stranger Things</strong>, donde
+        podrán explorar los <strong>soundtracks</strong> presentes en
+        las tres primeras temporadas de la serie.
+        </p>
 
-                Pero !eso no es todo!, también podrás explorar dichas canciones con información sobre su 
-                producción: año y artista. Recibir una recomendación aleatoria de alguna canción dentro de la
-                serie y explorar la lista de episodios: acompañadas de una sinopsis que te permita dar un vistazo
-                de lo que los fans recordamos y los que no, lo que pueden estarse perdiendo ;).
+        <p style="
+            color:#F5F1F3;
+            font-size:19px;
+            line-height:1.8;
+            margin-bottom:0;
+            text-align:justify;
+        ">
+        Además de descubrir las canciones, encontrarás información
+        sobre cada una de ellas, como su <strong>año de lanzamiento</strong>,
+        <strong>artista</strong> y el episodio donde aparece.
+        También podrás recorrer una guía de episodios con sus sinopsis
+        y recibir una <strong style="color:#FF203D;">recomendación aleatoria</strong>
+        para seguir explorando el universo musical de Hawkins.
+        </p>
 
-                """
-            )
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     # Utilizamos la segunda columna para mostrar una imagen
     # representativa de la serie o del proyecto.
@@ -453,7 +474,7 @@ if selected == "🧇 Hawkins":
             st.markdown(
                 """
                 Explora el repositorio de canciones organizado por
-                temporada y episodio, junto con gráficos y mapas.
+                temporada y episodio, junto con sus portadas.
                 """
             )
 
