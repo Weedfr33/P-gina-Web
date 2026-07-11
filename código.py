@@ -265,7 +265,7 @@ if selected == "🧇 Hawkins":
 
         # Guardamos en una variable la ruta de la imagen
         # que queremos mostrar en esta sección.
-        ruta_portada = Path("portada_hawkins.png")
+        ruta_portada = Path("imagen portada STRANGER THINGS.jpg")
 
         # Verificamos si la imagen ya fue subida al repositorio.
         if ruta_portada.exists():
