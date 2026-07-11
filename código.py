@@ -885,15 +885,24 @@ elif selected == "🔦 Upside Down":
             subset=["Canción", "Artista"]
         )
 
-        # Seleccionamos una fila aleatoria de la base de datos
-        # y la guardamos para que no cambie mientras se muestra.
-        st.session_state["cancion_recomendada"] = (
-            canciones_disponibles.sample(1).iloc[0]
-        )
-
-    # Verificamos si el usuario ya presionó el botón
-    # y existe una canción recomendada para mostrar.
-    if "cancion_recomendada" in st.session_state:
+        # Seleccionamos una canción solamente cuando
+        # el usuario presiona el botón.
+        if recomendar:
+        
+            canciones_disponibles = datos.dropna(
+                subset=["Canción", "Artista"]
+            )
+        
+            # Guardamos la canción elegida aleatoriamente.
+            st.session_state["cancion_recomendada"] = (
+                canciones_disponibles.sample(1).iloc[0]
+            )
+        
+            # Indicamos que la recomendación ya puede mostrarse.
+            st.session_state["mostrar_recomendacion"] = True
+            # Verificamos si el usuario ya presionó el botón
+            # y existe una canción recomendada para mostrar.
+            if "cancion_recomendada" in st.session_state:
 
         # Recuperamos la canción que fue seleccionada aleatoriamente.
         cancion = st.session_state["cancion_recomendada"]
