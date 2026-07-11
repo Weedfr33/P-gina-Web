@@ -79,6 +79,12 @@ datos = pd.read_excel(
     sheet_name="Tabla",
     header=1
 )
+# Completamos los espacios vacíos de las columnas relacionadas
+# con el episodio utilizando la información de la fila anterior.
+# Esto es necesario porque el título y la descripción solo aparecen
+# una vez al inicio de cada episodio dentro del archivo Excel.
+datos["Título"] = datos["Título"].ffill()
+datos["Descripción del ep. "] = datos["Descripción del ep. "].ffill()
 
 # Eliminamos la primera columna porque está vacía.
 datos = datos.dropna(axis=1, how="all")
@@ -93,6 +99,13 @@ datos = datos.dropna(axis=1, how="all")
     # Iconos asociados a cada opción del menú -> ['0-circle','1-circle', '2-circle']
     # Icono principal que aparece junto al título del menú -> menu_icon="filetype-py"
     # Opción seleccionada por defecto (0 = Inicio) -> default_index=0
+# Relacionamos el nombre que verá el usuario con
+# el nombre utilizado dentro del archivo Excel.
+temporadas = {
+    "Temporada 1": "Primera",
+    "Temporada 2": "Segunda",
+    "Temporada 3": "Tercera"
+}
 
 # Menú horizontal en una barra horizontal
 # OJO: Se puede eliminar el título del menú con None
@@ -499,48 +512,120 @@ if selected == "🧇 Hawkins":
     # del final de la portada.
     st.write("")
     st.write("")
+
+# Verificamos si el usuario seleccionó la sección "Hawkins Lab"
+# dentro del menú principal.
 elif selected == "🧪 Hawkins Lab":
 
+    # Mostramos el título principal de esta sección.
     st.markdown(
-        "<h1 style='text-align: center;'>¿Qué canción buscas?</h1>",
+        """
+        <h1 style="
+            text-align: center;
+            font-size: 55px;
+            margin-top: 35px;
+            margin-bottom: 25px;
+        ">
+            Repositorio musical de Hawkins
+        </h1>
+        """,
         unsafe_allow_html=True
     )
-    # Agregar un  texto para la respuesta
-    texto_2 = """
-    Al principio aprender a programar me daba mucho miedo porque era un curso completamente nuevo para mí. Nunca antes había programado y pensaba que sería muy difícil.
-    Sin embargo, poco a poco me di cuenta que la programación no solo es escribir códigos, sino también desarrollar paciencia, resolver problemas y pensar de una manera más organizada.
-    Lo que más disfruto de programar es ver cómo unas cuantas líneas de código pueden convertirse en algo funcional. También me gusta personalizar los proyectos y ejercicios, corregir errores porque eso me hace aprender el proceso y con el tiempo, ya sé cual es el error casi intuitivamente. En el futuro me gustaría crear blogs o páginas web relacionadas con el cine y el mundo audiovisual. 
-    """
 
-    # Mostramos el texto
-    st.markdown(f"<div style='text-align: justify; font-size: 18px;'>{texto_2}</div>", unsafe_allow_html=True)
+    # Creamos una lista con las temporadas disponibles.
+    opciones_temporada = [
+        "Temporada 1",
+        "Temporada 2",
+        "Temporada 3"
+    ]
 
-    # Formato A
-    # Agregamos todo los videos realizados en las prácticas anteriores
-    # Muestra un subtítulo para identificar el contenido del video
-    st.subheader("🎥 Video 1 - Youtube")
-    # Inserta un video de YouTube directamente en la aplicación.
-    # El usuario puede reproducirlo sin salir de Streamlit.
-    st.video("https://youtu.be/G4dKSeN9d1g")
-    # Agrega una breve descripción del video.
-    st.caption(
-        "En este video se comparan los tipos de datos strings y listas en Python utilizando ejemplos prácticos para facilitar la comprensión de sus diferencias y de las situaciones en las que conviene utilizar cada uno."
+    # Mostramos una barra desplegable para que el usuario
+    # seleccione la temporada que desea explorar.
+    temporada_seleccionada = st.selectbox(
+        "Selecciona una temporada",
+        opciones_temporada
+    )
+     # Relacionamos el nombre mostrado en la página con
+    # el nombre que aparece dentro del archivo Excel.
+    temporadas_excel = {
+        "Temporada 1": "Primera",
+        "Temporada 2": "Segunda",
+        "Temporada 3": "Tercera"
+    }
+
+    # Obtenemos el nombre de la temporada tal como
+    # se encuentra registrado en la base de datos.
+    nombre_temporada = temporadas_excel[temporada_seleccionada]
+
+    # Filtramos únicamente las canciones que pertenecen
+    # a la temporada elegida por el usuario.
+    datos_temporada = datos[
+        datos["Temporada"] == nombre_temporada
+    ]
+        # Obtenemos los episodios disponibles dentro
+    # de la temporada seleccionada.
+    episodios = sorted(
+        datos_temporada["Episodio"]
+        .dropna()
+        .unique()
+        .tolist()
     )
 
-    # Formato B
-    # Muestra un subtítulo para identificar el contenido del video
-    st.subheader("🎥 Video 2 - Youtube")
-    # Crea un botón que redirige al usuario a un video alojado en Google Drive. 
-    # Al hacer clic, el video se abrirá en una nueva pestaña del navegador.
-    st.video("https://youtu.be/Hg9DECHpnbY")
-    # st.link_button(
-            # "Ver video",
-            # "https://youtu.be/Hg9DECHpnbY"
-        #)
-    # Agrega una breve descripción del video.
-    st.caption(
-        "En este video se explican las principales diferencias entre los bucles for y while en Python mediante ejemplos propios, mostrando su funcionamiento, sus características y las situaciones en las que resulta más adecuado utilizar cada uno."
-    )
+    # Recorremos cada episodio para mostrar su título
+    # y la lista de canciones correspondiente.
+    for episodio in episodios:
+
+        # Filtramos las canciones pertenecientes
+        # al episodio que se está recorriendo.
+        datos_episodio = datos_temporada[
+            datos_temporada["Episodio"] == episodio
+        ]
+
+        # Recuperamos el título del episodio.
+        titulo_episodio = datos_episodio["Título"].iloc[0]
+
+        # Mostramos el número y el título del episodio.
+        st.markdown(
+            f"""
+            <h2 style="
+                color: #FF203D;
+                margin-top: 35px;
+                margin-bottom: 20px;
+            ">
+                Episodio {int(episodio)}: {titulo_episodio}
+            </h2>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Recorremos cada canción del episodio.
+        for _, cancion in datos_episodio.iterrows():
+
+            # Creamos dos columnas para colocar la portada
+            # al lado de la información de la canción.
+            columna_portada, columna_texto = st.columns(
+                [1, 4],
+                gap="large"
+            )
+
+            with columna_portada:
+
+                # Mostramos la portada guardada en el Excel.
+                st.image(
+                    cancion["Portada (imagen)"],
+                    width=120
+                )
+
+            with columna_texto:
+
+                # Mostramos el nombre de la canción,
+                # el artista y el año de lanzamiento.
+                st.markdown(f"### {cancion['Canción']}")
+                st.write(f"**Artista:** {cancion['Artista']}")
+                st.write(f"**Año:** {int(cancion['Año'])}")
+
+            # Agregamos espacio entre una canción y otra.
+            st.write("")
 
 elif selected == '📼 The Episodes':
     st.markdown("<h1 style='text-align: center;'>La música episodio por episodio</h2>", unsafe_allow_html=True)
