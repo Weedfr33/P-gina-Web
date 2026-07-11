@@ -930,10 +930,17 @@ elif selected == "🔦 Upside Down":
             "Tercera": "Temporada 3"
         }
 
-        # Obtenemos el nombre que aparecerá en la página.
+        # Obtenemos el nombre completo de la temporada.
         temporada_mostrada = nombres_temporada.get(
             temporada,
             temporada
+        )
+
+        # Obtenemos únicamente el número de la temporada
+        # para evitar repetir la palabra dentro de la tarjeta.
+        numero_temporada = str(temporada_mostrada).replace(
+            "Temporada ",
+            ""
         )
 
         # Convertimos el año en un número entero cuando exista.
@@ -1023,42 +1030,92 @@ elif selected == "🔦 Upside Down":
             with st.container(border=True):
 
                 st.markdown(
-                    "<h3 style='text-align: center;'>Año</h3>",
+                    """
+                    <h3 style="
+                        text-align: center;
+                        margin-bottom: 8px;
+                    ">
+                        Año
+                    </h3>
+                    """,
                     unsafe_allow_html=True
                 )
 
                 st.markdown(
-                    f"<h2 style='text-align: center;'>{año_mostrado}</h2>",
+                    f"""
+                    <h2 style="
+                        text-align: center;
+                        font-size: 34px;
+                        margin-top: 0;
+                        margin-bottom: 5px;
+                    ">
+                        {año_mostrado}
+                    </h2>
+                    """,
                     unsafe_allow_html=True
                 )
 
-        # Mostramos la temporada dentro de una segunda tarjeta.
+        # Mostramos el número de la temporada dentro
+        # de una segunda tarjeta.
         with tarjeta_temporada:
 
             with st.container(border=True):
 
                 st.markdown(
-                    "<h3 style='text-align: center;'>Temporada</h3>",
+                    """
+                    <h3 style="
+                        text-align: center;
+                        margin-bottom: 8px;
+                    ">
+                        Temporada
+                    </h3>
+                    """,
                     unsafe_allow_html=True
                 )
 
                 st.markdown(
-                    f"<h2 style='text-align: center;'>{temporada_mostrada}</h2>",
+                    f"""
+                    <h2 style="
+                        text-align: center;
+                        font-size: 34px;
+                        margin-top: 0;
+                        margin-bottom: 5px;
+                    ">
+                        {numero_temporada}
+                    </h2>
+                    """,
                     unsafe_allow_html=True
                 )
 
-        # Mostramos el episodio dentro de una tercera tarjeta.
+        # Mostramos el número del episodio dentro
+        # de una tercera tarjeta.
         with tarjeta_episodio:
 
             with st.container(border=True):
 
                 st.markdown(
-                    "<h3 style='text-align: center;'>Episodio</h3>",
+                    """
+                    <h3 style="
+                        text-align: center;
+                        margin-bottom: 8px;
+                    ">
+                        Episodio
+                    </h3>
+                    """,
                     unsafe_allow_html=True
                 )
 
                 st.markdown(
-                    f"<h2 style='text-align: center;'>{episodio_mostrado}</h2>",
+                    f"""
+                    <h2 style="
+                        text-align: center;
+                        font-size: 34px;
+                        margin-top: 0;
+                        margin-bottom: 5px;
+                    ">
+                        {episodio_mostrado}
+                    </h2>
+                    """,
                     unsafe_allow_html=True
                 )
 
@@ -1068,11 +1125,20 @@ elif selected == "🔦 Upside Down":
         st.write("")
 
         # Mostramos el contexto de la canción
-        # dentro de una tarjeta final.
+        # dentro de una tarjeta final más compacta.
         with st.container(border=True):
 
             st.markdown(
-                "<h3 style='text-align: center; color: #D8D5DC;'>Aparece en</h3>",
+                """
+                <p style="
+                    text-align: center;
+                    color: #D8D5DC;
+                    font-size: 18px;
+                    margin-bottom: 5px;
+                ">
+                    Aparece en
+                </p>
+                """,
                 unsafe_allow_html=True
             )
 
@@ -1081,7 +1147,9 @@ elif selected == "🔦 Upside Down":
                 <h2 style="
                     text-align: center;
                     color: #FFFFFF;
-                    margin-top: 5px;
+                    font-size: 30px;
+                    margin-top: 0;
+                    margin-bottom: 10px;
                 ">
                     {titulo_episodio}
                 </h2>
@@ -1094,10 +1162,10 @@ elif selected == "🔦 Upside Down":
                 <p style="
                     text-align: center;
                     color: #D8D5DC;
-                    font-size: 17px;
+                    font-size: 15px;
+                    margin-bottom: 0;
                 ">
-                    Esta canción fue seleccionada aleatoriamente
-                    desde el repositorio musical de Hawkins.
+                    Seleccionada aleatoriamente del repositorio musical de Hawkins.
                 </p>
                 """,
                 unsafe_allow_html=True
