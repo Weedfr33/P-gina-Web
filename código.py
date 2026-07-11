@@ -451,43 +451,42 @@ if selected == "🧇 Hawkins":
     st.write("")
 
     # ---------------------------------------------------------
-    # CUARTO BLOQUE: MENSAJE FINAL
-    # ---------------------------------------------------------
+# CUARTO BLOQUE: MENSAJE FINAL
+# ---------------------------------------------------------
 
-    # Cerramos la portada con una invitación para que
-    # el usuario continúe explorando la página.
-    st.markdown(
-        """
-        <div style="
-            text-align: center;
-            margin-top: 35px;
-            margin-bottom: 45px;
-            padding: 30px;
-            background: rgba(8, 7, 15, 0.78);
-            border: 1px solid rgba(237, 28, 46, 0.35);
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(237, 28, 46, 0.15);
+# Cerramos la portada con una invitación para que
+# el usuario continúe explorando la página.
+st.markdown(
+    """
+    <div style="
+        text-align: center;
+        margin-top: 35px;
+        margin-bottom: 45px;
+        padding: 30px;
+        background: rgba(8, 7, 15, 0.78);
+        border: 1px solid rgba(237, 28, 46, 0.35);
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(237, 28, 46, 0.15);
+    ">
+        <h2 style="
+            color: #FF203D;
+            margin-bottom: 12px;
         ">
+            El soundtrack de Hawkins te espera
+        </h2>
 
-            <h2 style="
-                color: #FF203D;
-                margin-bottom: 12px;
-            ">
-                El soundtrack de Hawkins te espera
-            </h2>
-
-            <p style="
-                color: #F5F1F3;
-                font-size: 18px;
-                margin: 0;
-            ">
-                Utiliza el menú principal para comenzar a explorar.
-            </p>
-
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+        <p style="
+            color: #F5F1F3;
+            font-size: 18px;
+            margin: 0;
+        ">
+            Utiliza el menú principal para comenzar a explorar.
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+    
 elif selected == '🧪 Hawkins Lab':
     st.markdown("<h1 style='text-align: center;'>¿Qué canción buscas?</h1>", unsafe_allow_html=True)
 
