@@ -79,12 +79,24 @@ datos = pd.read_excel(
     sheet_name="Tabla",
     header=1
 )
-# Completamos los espacios vacíos de las columnas relacionadas
-# con el episodio utilizando la información de la fila anterior.
-# Esto es necesario porque el título y la descripción solo aparecen
-# una vez al inicio de cada episodio dentro del archivo Excel.
+
+# Eliminamos las columnas que estén completamente vacías.
+# En este caso, también retiramos la primera columna vacía del archivo Excel.
+datos = datos.dropna(axis=1, how="all")
+
+# Eliminamos los espacios adicionales que puedan existir
+# al inicio o al final de los nombres de las columnas.
+# Esto evita errores al llamar una columna dentro del código.
+datos.columns = datos.columns.str.strip()
+
+# Completamos las celdas vacías del título utilizando
+# la información registrada en la fila anterior.
 datos["Título"] = datos["Título"].ffill()
-datos["Descripción sinóptica del episodio "] = datos["Descripción sinóptica del episodio "].ffill()
+
+# Completamos de la misma manera las descripciones vacías.
+# Después de limpiar los encabezados, esta columna ya no lleva
+# un espacio adicional después del punto.
+datos["Descripción sinóptica del episodio"] = datos["Descripción sinóptica del episodio"].ffill()
 
 # Eliminamos la primera columna porque está vacía.
 datos = datos.dropna(axis=1, how="all")
