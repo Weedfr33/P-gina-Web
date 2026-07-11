@@ -210,7 +210,7 @@ if selected == "🧇 Hawkins":
     # 🧪 Hawkins Lab
     # 🔦 Upside Down
 
-    st.divider()
+    st.divider("escribir aquí")
 
     # -------------------------
     # ¿Por qué Stranger Things?
@@ -221,7 +221,7 @@ if selected == "🧇 Hawkins":
     # Aquí explicaremos por qué elegimos la serie
     # como inspiración para el proyecto.
 
-    st.divider()
+    st.divider("escribir aquí")
 
     # -------------------------
     # ¿Cómo utilizar la página?
@@ -232,7 +232,7 @@ if selected == "🧇 Hawkins":
     # Aquí explicaremos cómo recorrer las diferentes
     # secciones de la aplicación.
 
-    st.divider()
+    st.divider("escribir aquí")
 
     # -------------------------
     # Comienza la exploración
