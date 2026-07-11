@@ -457,54 +457,54 @@ if selected == "🧇 Hawkins":
     st.write("")
     st.write("")
 
-# ---------------------------------------------------------
-# MENSAJE FINAL DE LA PORTADA
-# ---------------------------------------------------------
-
-# Dejamos un pequeño espacio antes del mensaje final.
-st.write("")
-st.write("")
-
-# Mostramos un título para invitar al usuario a explorar
-# el contenido de la página.
-st.markdown(
-    """
-    <h2 style="
-        text-align:center;
-        color:#FF203D;
-        font-size:36px;
-        margin-bottom:15px;
-    ">
-        El soundtrack de Hawkins te espera
-    </h2>
-    """,
-    unsafe_allow_html=True
-)
-
-# Añadimos una breve descripción que indique cómo navegar
-# por las diferentes secciones del proyecto.
-st.markdown(
-    """
-    <div style="
-        text-align:center;
-        font-size:19px;
-        color:#E8E8E8;
-        max-width:850px;
-        margin:auto;
-        line-height:1.8;
-    ">
-        Explora las temporadas, descubre la música de cada episodio
-        y deja que <strong>Upside Down</strong> te recomiende una canción
-        para comenzar tu recorrido.
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-# Agregamos un pequeño espacio para separar el mensaje
-# del final de la portada.
-st.write("")
-st.write("")
+    # ---------------------------------------------------------
+    # MENSAJE FINAL DE LA PORTADA
+    # ---------------------------------------------------------
+    
+    # Dejamos un pequeño espacio antes del mensaje final.
+    st.write("")
+    st.write("")
+    
+    # Mostramos un título para invitar al usuario a explorar
+    # el contenido de la página.
+    st.markdown(
+        """
+        <h2 style="
+            text-align:center;
+            color:#FF203D;
+            font-size:36px;
+            margin-bottom:15px;
+        ">
+            El soundtrack de Hawkins te espera
+        </h2>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    # Añadimos una breve descripción que indique cómo navegar
+    # por las diferentes secciones del proyecto.
+    st.markdown(
+        """
+        <div style="
+            text-align:center;
+            font-size:19px;
+            color:#E8E8E8;
+            max-width:850px;
+            margin:auto;
+            line-height:1.8;
+        ">
+            Explora las temporadas, descubre la música de cada episodio
+            y deja que <strong>Upside Down</strong> te recomiende una canción
+            para comenzar tu recorrido.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    # Agregamos un pequeño espacio para separar el mensaje
+    # del final de la portada.
+    st.write("")
+    st.write("")
 elif selected == "🧪 Hawkins Lab":
 
     st.markdown(
