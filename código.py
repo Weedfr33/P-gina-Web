@@ -264,9 +264,15 @@ if selected == "🧇 Hawkins":
             # reemplazarse por la descripción final del proyecto.
             st.markdown(
                 """
-                COLOCAR AQUÍ EL TEXTO.
+                Es una página web dedicada a los fans y posibles fans de la serie de Stranger Things en donde
+                sus usuarios podrán encontrar información dedicada sobre los soundtracks de la serie en sus 
+                primeras 3 temporadas.
 
-                COLOCAR AQUÍ EL TEXTO.
+                Pero !eso no es todo!, también podrás explorar dichas canciones con información sobre su 
+                producción: año y artista. Recibir una recomendación aleatoria de alguna canción dentro de la
+                serie y explorar la lista de episodios: acompañadas de una sinopsis que te permita dar un vistazo
+                de lo que los fans recordamos y los que no, lo que pueden estarse perdiendo ;).
+
                 """
             )
 
@@ -338,9 +344,11 @@ if selected == "🧇 Hawkins":
             # el objetivo final del proyecto esté listo.
             st.markdown(
                 """
-                COLOCAR AQUÍ EL TEXTO.
+                SOUNDTRACK ¿Estás ahí?
 
-                Aquí irá la versión definitiva del objetivo.
+            En M&M'S THINGS buscamos, a través de la música, rememorar algunos de los momentos más
+            icónicos de la serie para los que la conocen, y para los que no, que puedan encontrar
+            el interés de poder seguirlas y ser parte de la comunidad.
                 """
             )
 
