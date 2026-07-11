@@ -417,44 +417,45 @@ if selected == "🧇 Hawkins":
                 """
             )
 
-    # ---------------------------------------------------------
-    # TARJETA: UPSIDE DOWN
-    # ---------------------------------------------------------
+# ---------------------------------------------------------
+# TARJETA: UPSIDE DOWN
+# ---------------------------------------------------------
 
-    with tarjeta_recomendacion:
+with tarjeta_recomendacion:
 
-        # Esta tarjeta explica la función de recomendación
-        # aleatoria de la página.
-        with st.container(border=True):
+    # Esta tarjeta explica la función de recomendación
+    # aleatoria de la página.
+    with st.container(border=True):
 
-            st.markdown(
-                """
-                <h3 style="
-                    text-align: center;
-                    color: #FFFFFF;
-                    font-size: 26px;
-                ">
-                    🔦 Upside Down
-                </h3>
-                """,
-                unsafe_allow_html=True
-            )
+        st.markdown(
+            """
+            <h3 style="
+                text-align: center;
+                color: #FFFFFF;
+                font-size: 26px;
+            ">
+                🔦 Upside Down
+            </h3>
+            """,
+            unsafe_allow_html=True
+        )
 
-            st.markdown(
-                """
-                Recibe una canción aleatoria del repositorio y descubre
-                en qué temporada y episodio aparece.
-                """
-            )
+        st.markdown(
+            """
+            Recibe una canción aleatoria del repositorio y descubre
+            en qué temporada y episodio aparece.
+            """
+        )
 
-    st.write("")
-    st.write("")
+st.write("")
+st.write("")
 
-    unsafe_allow_html=True
-)
-elif selected == '🧪 Hawkins Lab':
-    st.markdown("<h1 style='text-align: center;'>¿Qué canción buscas?</h1>", unsafe_allow_html=True)
+elif selected == "🧪 Hawkins Lab":
 
+    st.markdown(
+        "<h1 style='text-align: center;'>¿Qué canción buscas?</h1>",
+        unsafe_allow_html=True
+    )
     # Agregar un  texto para la respuesta
     texto_2 = """
     Al principio aprender a programar me daba mucho miedo porque era un curso completamente nuevo para mí. Nunca antes había programado y pensaba que sería muy difícil.
