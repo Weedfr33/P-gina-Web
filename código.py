@@ -185,7 +185,18 @@ selected = option_menu(
         }
     }
 )
-    
+# Verificamos si el usuario acaba de cambiar de sección.
+# Esto nos permite reconocer cuándo ingresa nuevamente a Upside Down.
+if st.session_state.get("seccion_anterior") != selected:
+
+    # Cuando el usuario entra a Upside Down, eliminamos cualquier
+    # recomendación anterior para que inicialmente solo aparezca el botón.
+    if selected == "🔦 Upside Down":
+        st.session_state.pop("cancion_recomendada", None)
+        st.session_state["mostrar_recomendacion"] = False
+
+    # Guardamos la sección actual para compararla en la siguiente ejecución.
+    st.session_state["seccion_anterior"] = selected    
 # Verificamos si el usuario seleccionó la sección "Hawkins"
 # dentro del menú principal de la página.
 if selected == "🧇 Hawkins":
